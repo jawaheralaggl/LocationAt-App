@@ -7,6 +7,10 @@
 
 import UIKit
 
+struct CustomData {
+    var image: UIImage
+}
+
 class PlacesViewController: UIViewController {
     
     // MARK: - properties
@@ -30,6 +34,17 @@ class PlacesViewController: UIViewController {
         cv.register(PlacesCell.self, forCellWithReuseIdentifier: "cell")
         return cv
     }()
+    
+    // dummy data for testing..
+    fileprivate let categoriesData = [
+        CustomData(image: #imageLiteral(resourceName: "2")),
+        CustomData(image: #imageLiteral(resourceName: "1")),
+        CustomData(image: #imageLiteral(resourceName: "3")),
+        CustomData(image: #imageLiteral(resourceName: "2")),
+        CustomData(image: #imageLiteral(resourceName: "1")),
+    ]
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +121,8 @@ extension PlacesViewController: UICollectionViewDataSource {
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCell
+            // display data
+            cell.data = self.categoriesData[indexPath.item]
             return cell
         }
     }

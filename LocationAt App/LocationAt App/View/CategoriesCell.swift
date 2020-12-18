@@ -11,6 +11,14 @@ class CategoriesCell: UICollectionViewCell {
     
     // MARK: - properties
 
+    // Pass data for testing..
+    var data: CustomData? {
+        didSet {
+            guard let data = data else { return }
+            categoryImage.image = data.image
+        }
+    }
+    
      let categoryImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false

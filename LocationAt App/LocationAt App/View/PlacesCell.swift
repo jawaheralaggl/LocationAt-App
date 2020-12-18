@@ -35,6 +35,7 @@ class PlacesCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.text = "open"
         label.textColor = .black
         return label
     }()
