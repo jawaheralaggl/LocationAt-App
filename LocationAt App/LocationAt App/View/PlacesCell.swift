@@ -8,7 +8,9 @@
 import UIKit
 
 class PlacesCell: UICollectionViewCell {
-    
+   
+    // MARK: - properties
+
     let placeImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +38,9 @@ class PlacesCell: UICollectionViewCell {
         label.textColor = .black
         return label
     }()
-    
+
+    // MARK: - layout
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.backgroundColor = .gray
