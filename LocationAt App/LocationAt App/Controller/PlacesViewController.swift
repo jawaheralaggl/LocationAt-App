@@ -28,6 +28,16 @@ class PlacesViewController: UIViewController {
         return label
     }()
     
+    let searchButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .darkGray
+        button.backgroundColor =  UIColor(white: 0, alpha: 0.1)
+        button.setImage(UIImage(named: "search"), for: .normal)
+        button.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     private let categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -73,6 +83,12 @@ class PlacesViewController: UIViewController {
         categoriesCollectionView.dataSource = self
     }
     
+    // MARK: - Selectors
+    
+    @objc func searchButtonPressed() {
+
+    }
+    
     // MARK: - layout
     
     func configureUI() {
@@ -82,8 +98,15 @@ class PlacesViewController: UIViewController {
         headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
+        view.addSubview(searchButton)
+        searchButton.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 15).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        searchButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        searchButton.layer.cornerRadius = 30 / 2
+        
         view.addSubview(mainSearchBar)
-        mainSearchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        mainSearchBar.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 5).isActive = true
         mainSearchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         mainSearchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
