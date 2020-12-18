@@ -17,6 +17,17 @@ class PlacesViewController: UIViewController {
     
     var mainSearchBar = SearchBar()
     
+    private let headerLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textColor = .systemBlue
+        label.text = "What would you like to find?"
+        return label
+    }()
+    
     private let categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -65,6 +76,11 @@ class PlacesViewController: UIViewController {
     // MARK: - layout
     
     func configureUI() {
+        
+        view.addSubview(headerLabel)
+        headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
+        headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
         view.addSubview(mainSearchBar)
         mainSearchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
