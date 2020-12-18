@@ -15,6 +15,8 @@ class PlacesViewController: UIViewController {
     
     // MARK: - properties
     
+    var mainSearchBar = SearchBar()
+    
     private let categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -50,6 +52,9 @@ class PlacesViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         
+        // Set searchbar delegate to this VC
+        mainSearchBar.delegate = self
+        
         // Set collectionviews delegate and dataSource to this VC
         placesCollectionView.delegate = self
         placesCollectionView.dataSource = self
@@ -61,9 +66,15 @@ class PlacesViewController: UIViewController {
     
     func configureUI() {
         
+        view.addSubview(mainSearchBar)
+        mainSearchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        mainSearchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        mainSearchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        
         view.addSubview(categoriesCollectionView)
         categoriesCollectionView.backgroundColor = .white
-        categoriesCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        categoriesCollectionView.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor).isActive = true
         categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         categoriesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 3.5).isActive = true
@@ -101,7 +112,7 @@ extension PlacesViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
-// MARK: - UICollectionViewDelegateFlowLayout + DataSource
+// MARK: - UICollectionViewDataSource
 
 extension PlacesViewController: UICollectionViewDataSource {
     
@@ -126,5 +137,12 @@ extension PlacesViewController: UICollectionViewDataSource {
             return cell
         }
     }
+    
+}
+
+// MARK: - UISearchBarDelegate
+
+extension PlacesViewController: UISearchBarDelegate {
+
     
 }
