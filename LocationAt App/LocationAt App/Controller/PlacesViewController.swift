@@ -17,6 +17,7 @@ class PlacesViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(CategoriesCell.self, forCellWithReuseIdentifier: "cell")
         return cv
     }()
     
@@ -26,6 +27,7 @@ class PlacesViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsHorizontalScrollIndicator = false
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(PlacesCell.self, forCellWithReuseIdentifier: "cell")
         return cv
     }()
     
