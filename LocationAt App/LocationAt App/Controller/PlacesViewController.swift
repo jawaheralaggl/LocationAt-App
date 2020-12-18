@@ -75,6 +75,7 @@ class PlacesViewController: UIViewController {
         
         // Set searchbar delegate to this VC
         mainSearchBar.delegate = self
+        mainSearchBar.alpha = 0
         
         // Set collectionviews delegate and dataSource to this VC
         placesCollectionView.delegate = self
@@ -86,7 +87,7 @@ class PlacesViewController: UIViewController {
     // MARK: - Selectors
     
     @objc func searchButtonPressed() {
-
+        showSearchBar()
     }
     
     // MARK: - layout
@@ -183,5 +184,33 @@ extension PlacesViewController: UICollectionViewDataSource {
 
 extension PlacesViewController: UISearchBarDelegate {
 
+    func showSearchBar() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.searchButton.alpha = 0
+            self.mainSearchBar.alpha = 1
+            self.searchBarCancelIcon()
+        }, completion: { finished in
+            self.mainSearchBar.becomeFirstResponder()
+        })
+    }
+    
+    func hideSearchBar() {
+        searchButton.alpha = 1
+        UIView.animate(withDuration: 0.3, animations: {
+            self.mainSearchBar.alpha = 0
+        })
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        hideSearchBar()
+    }
+    
+    func searchBarCancelIcon() {
+        mainSearchBar.setValue(" ", forKey: "cancelButtonText")
+        mainSearchBar.showsCancelButton = true
+        let cancelButton = self.mainSearchBar.value(forKey: "cancelButton") as? UIButton
+        cancelButton?.tintColor = UIColor(white: 0, alpha: 0.1)
+        cancelButton?.setImage(UIImage(named: "cancel"), for: .normal)
+    }
     
 }
