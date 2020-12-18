@@ -44,6 +44,7 @@ class PlacesCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.backgroundColor = .gray
+        contentView.layer.cornerRadius = 25
         
         contentView.addSubview(placeImage)
         placeImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
