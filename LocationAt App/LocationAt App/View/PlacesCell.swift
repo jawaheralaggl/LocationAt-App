@@ -26,8 +26,7 @@ class PlacesCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.text = "name"
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
@@ -35,7 +34,6 @@ class PlacesCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = .black
         return label
     }()
     
