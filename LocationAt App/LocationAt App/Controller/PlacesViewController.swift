@@ -15,6 +15,12 @@ class PlacesViewController: UIViewController {
     
     // MARK: - properties
     
+    // Central Park, NYC coordinates (for testing)
+    let CPLatitude: Double = 40.782483
+    let CPLongitude: Double = -73.963540
+    
+    var places: [Places] = []
+    
     var mainSearchBar = SearchBar()
     
     private let headerLabel: UILabel = {
@@ -82,6 +88,22 @@ class PlacesViewController: UIViewController {
         placesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
+        
+        fetchPlaces()
+    }
+    
+    // MARK: - Helpers
+    
+    func fetchPlaces() {
+        fetchPlaces(latitude: CPLatitude, longitude: CPLongitude, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+            
+            if let response = response {
+                self.places = response
+                DispatchQueue.main.async {
+                    self.placesCollectionView.reloadData()
+                }
+            }
+        }
     }
     
     // MARK: - Selectors
@@ -183,7 +205,7 @@ extension PlacesViewController: UICollectionViewDataSource {
 // MARK: - UISearchBarDelegate
 
 extension PlacesViewController: UISearchBarDelegate {
-
+    
     func showSearchBar() {
         UIView.animate(withDuration: 0.5, animations: {
             self.searchButton.alpha = 0
