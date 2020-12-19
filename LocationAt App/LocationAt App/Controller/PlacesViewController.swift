@@ -181,7 +181,7 @@ extension PlacesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // return different numberOfItems for each collectionview
         if collectionView == self.placesCollectionView {
-            return 10
+            return places.count
         }else{
             return 5
         }
@@ -191,6 +191,10 @@ extension PlacesViewController: UICollectionViewDataSource {
         // Set different cell for each collectionview
         if collectionView == self.placesCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlacesCell
+            // Filling the cell content with values from the places array
+            cell.nameLabel.text = places[indexPath.row].name
+            // Set default value in case nil values occur
+            cell.isClosed = places[indexPath.row].is_closed ?? false
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCell

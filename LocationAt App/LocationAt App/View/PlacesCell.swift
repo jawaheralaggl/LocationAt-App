@@ -8,9 +8,9 @@
 import UIKit
 
 class PlacesCell: UICollectionViewCell {
-   
+    
     // MARK: - properties
-
+    
     let placeImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -35,13 +35,25 @@ class PlacesCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.text = "open"
         label.textColor = .black
         return label
     }()
-
+    
+    // Set isClosed variable to true or false and the properties will be set accordingly
+    var isClosed: Bool = false {
+        didSet {
+            if isClosed {
+                isClosedLabel.text = "Closed"
+                isClosedLabel.textColor = .red
+            } else {
+                isClosedLabel.text = "Open"
+                isClosedLabel.textColor = .systemGreen
+            }
+        }
+    }
+    
     // MARK: - layout
-
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.backgroundColor = .gray
@@ -58,7 +70,8 @@ class PlacesCell: UICollectionViewCell {
         nameLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
         
         placeImage.addSubview(isClosedLabel)
-        isClosedLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10).isActive = true
+        isClosedLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        isClosedLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 8).isActive = true
         isClosedLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
         isClosedLabel.trailingAnchor.constraint(equalTo: placeImage.trailingAnchor, constant: -8).isActive = true
     }
