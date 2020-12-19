@@ -16,6 +16,7 @@
 		A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355C6258D21B20071CE72 /* PlacesCell.swift */; };
 		A55355CA258D22630071CE72 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355C9258D22630071CE72 /* CategoriesCell.swift */; };
 		A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355CC258D2A240071CE72 /* SearchBar.swift */; };
+		A55355D2258E193E0071CE72 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D1258E193E0071CE72 /* Places.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A55355C6258D21B20071CE72 /* PlacesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCell.swift; sourceTree = "<group>"; };
 		A55355C9258D22630071CE72 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		A55355CC258D2A240071CE72 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		A55355D1258E193E0071CE72 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		A55355C0258D1DEF0071CE72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A55355D1258E193E0071CE72 /* Places.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				A55355CA258D22630071CE72 /* CategoriesCell.swift in Sources */,
 				A5535584258CD4C50071CE72 /* PlacesViewController.swift in Sources */,
 				A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */,
+				A55355D2258E193E0071CE72 /* Places.swift in Sources */,
 				A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */,
 				A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */,
 				A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */,
