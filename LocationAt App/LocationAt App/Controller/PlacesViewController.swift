@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 struct CustomData {
     var image: UIImage
