@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		27B9EBFB42D443E104F72863 /* Pods_LocationAt_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C358719C5A25A5C2F7FC4C6 /* Pods_LocationAt_App.framework */; };
+		A51BDE96258FAE84003099A8 /* PlacesViewController + GetLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */; };
 		A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553557F258CD4C50071CE72 /* AppDelegate.swift */; };
 		A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535581258CD4C50071CE72 /* SceneDelegate.swift */; };
 		A5535584258CD4C50071CE72 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535583258CD4C50071CE72 /* PlacesViewController.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		11872E13D3D88C75573E2439 /* Pods-LocationAt App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.release.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.release.xcconfig"; sourceTree = "<group>"; };
 		7C358719C5A25A5C2F7FC4C6 /* Pods_LocationAt_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationAt_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + GetLocation.swift"; sourceTree = "<group>"; };
 		A553557C258CD4C50071CE72 /* LocationAt App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LocationAt App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A553557F258CD4C50071CE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5535581258CD4C50071CE72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +68,6 @@
 				D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */,
 				11872E13D3D88C75573E2439 /* Pods-LocationAt App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -107,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				A5535583258CD4C50071CE72 /* PlacesViewController.swift */,
+				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +268,7 @@
 				A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */,
 				A55355D2258E193E0071CE72 /* Places.swift in Sources */,
 				A55355D5258E19ED0071CE72 /* FetchPlacesData.swift in Sources */,
+				A51BDE96258FAE84003099A8 /* PlacesViewController + GetLocation.swift in Sources */,
 				A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */,
 				A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */,
 				A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */,
