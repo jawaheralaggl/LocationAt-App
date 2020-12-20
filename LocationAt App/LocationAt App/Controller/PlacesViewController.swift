@@ -21,8 +21,12 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var places: [Places] = []
+    var filteredPlaces: [Places] = []
     
     var mainSearchBar = SearchBar()
+    var isSearch: Bool {
+        return mainSearchBar.text?.isEmpty == false
+    }
     
     private let headerLabel: UILabel = {
         let label = UILabel()

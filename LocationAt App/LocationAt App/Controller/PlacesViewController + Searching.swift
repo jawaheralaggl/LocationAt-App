@@ -11,6 +11,11 @@ import UIKit
 
 extension PlacesViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredPlaces = places.filter({ ($0.name?.contains(searchText))! })
+        placesCollectionView.reloadData()
+    }
+    
     func showSearchBar() {
         UIView.animate(withDuration: 0.5, animations: {
             self.searchButton.alpha = 0
@@ -23,8 +28,10 @@ extension PlacesViewController: UISearchBarDelegate {
     
     func hideSearchBar() {
         searchButton.alpha = 1
+        self.mainSearchBar.text = ""
         UIView.animate(withDuration: 0.3, animations: {
             self.mainSearchBar.alpha = 0
+            self.placesCollectionView.reloadData()
         })
     }
     

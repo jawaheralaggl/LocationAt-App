@@ -36,7 +36,7 @@ extension PlacesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // return different numberOfItems for each collectionview
         if collectionView == self.placesCollectionView {
-            return places.count
+            return isSearch ? filteredPlaces.count  : places.count
         }else{
             return 5
         }
@@ -47,11 +47,11 @@ extension PlacesViewController: UICollectionViewDataSource {
         if collectionView == self.placesCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlacesCell
             // Filling the cell content with values from the places array
-            cell.nameLabel.text = places[indexPath.row].name
+            cell.nameLabel.text = isSearch ? filteredPlaces[indexPath.row].name : places[indexPath.row].name
             // Set default value in case nil values occur
-            cell.isClosed = places[indexPath.row].is_closed ?? false
+            cell.isClosed = isSearch ? filteredPlaces[indexPath.row].is_closed ?? false : places[indexPath.row].is_closed ?? false
             // convert strint to URL then set the imageView with an url
-            guard let imageUrl = URL(string: places[indexPath.row].image_url ?? "") else {return cell}
+            guard let imageUrl = isSearch ? URL(string: filteredPlaces[indexPath.row].image_url ?? "") : URL(string: places[indexPath.row].image_url ?? "") else { return cell}
             cell.placeImage.sd_setImage(with: imageUrl, completed: nil)
             return cell
         }else{
