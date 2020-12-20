@@ -50,6 +50,11 @@ class PlacesCell: UICollectionViewCell {
         }
     }
     
+    func configure(name: String, isClosed: Bool) {
+        self.nameLabel.text = name
+        self.isClosed = isClosed
+    }
+    
     // MARK: - layout
     
     override init(frame: CGRect) {

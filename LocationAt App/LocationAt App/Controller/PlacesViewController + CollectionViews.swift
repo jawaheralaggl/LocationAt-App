@@ -46,11 +46,10 @@ extension PlacesViewController: UICollectionViewDataSource {
         // Set different cell for each collectionview
         if collectionView == self.placesCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlacesCell
-            // Filling the cell content with values from the places array
-            cell.nameLabel.text = isSearch ? filteredPlaces[indexPath.row].name : places[indexPath.row].name
-            // Set default value in case nil values occur
-            cell.isClosed = isSearch ? filteredPlaces[indexPath.row].is_closed ?? false : places[indexPath.row].is_closed ?? false
-            // convert strint to URL then set the imageView with an url
+            // Filling the cell content and set default value in case nil values occur
+            cell.configure(name: (isSearch ? filteredPlaces[indexPath.row].name : places[indexPath.row].name) ?? "", isClosed: isSearch ? filteredPlaces[indexPath.row].is_closed ?? false : places[indexPath.row].is_closed ?? false)
+            
+            // Convert string to URL then set the imageView with an url
             guard let imageUrl = isSearch ? URL(string: filteredPlaces[indexPath.row].image_url ?? "") : URL(string: places[indexPath.row].image_url ?? "") else { return cell}
             cell.placeImage.sd_setImage(with: imageUrl, completed: nil)
             return cell
