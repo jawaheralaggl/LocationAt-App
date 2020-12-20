@@ -7,19 +7,19 @@
 
 import UIKit
 import SDWebImage
+import CoreLocation
 
 struct CustomData {
     var image: UIImage
 }
 
-class PlacesViewController: UIViewController {
+class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - properties
     
-    // Central Park, NYC coordinates (for testing)
-    let CPLatitude: Double = 40.782483
-    let CPLongitude: Double = -73.963540
-    
+    // Uses CLLocationManager to ask the user for their location
+    let locationManager = CLLocationManager()
+
     var places: [Places] = []
     
     var mainSearchBar = SearchBar()
@@ -80,6 +80,9 @@ class PlacesViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         
+        // Set delegate to this VC
+        locationManager.delegate = self
+
         // Set searchbar delegate to this VC
         mainSearchBar.delegate = self
         mainSearchBar.alpha = 0
@@ -96,7 +99,10 @@ class PlacesViewController: UIViewController {
     // MARK: - Helpers
     
     func fetchPlaces() {
-        fetchPlaces(latitude: CPLatitude, longitude: CPLongitude, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        
+        let userLocation = getUserLocation(locationManager: locationManager)
+        
+        fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
