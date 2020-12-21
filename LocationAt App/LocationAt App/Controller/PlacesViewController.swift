@@ -6,14 +6,21 @@
 //
 
 import UIKit
+import SDWebImage
+import CoreLocation
 
 struct CustomData {
     var image: UIImage
 }
 
-class PlacesViewController: UIViewController {
+class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - properties
+    
+    // Uses CLLocationManager to ask the user for their location
+    let locationManager = CLLocationManager()
+    
+    var places: [Places] = []
     
     var mainSearchBar = SearchBar()
     
@@ -38,7 +45,7 @@ class PlacesViewController: UIViewController {
         return button
     }()
     
-    private let categoriesCollectionView: UICollectionView = {
+    let categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -48,7 +55,7 @@ class PlacesViewController: UIViewController {
         return cv
     }()
     
-    private let placesCollectionView: UICollectionView = {
+    let placesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -59,7 +66,7 @@ class PlacesViewController: UIViewController {
     }()
     
     // dummy data for testing..
-    fileprivate let categoriesData = [
+    let categoriesData = [
         CustomData(image: #imageLiteral(resourceName: "2")),
         CustomData(image: #imageLiteral(resourceName: "1")),
         CustomData(image: #imageLiteral(resourceName: "3")),
@@ -73,15 +80,47 @@ class PlacesViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         
-        // Set searchbar delegate to this VC
-        mainSearchBar.delegate = self
         mainSearchBar.alpha = 0
         
-        // Set collectionviews delegate and dataSource to this VC
+        // Set delegates to this VC
+        locationManager.delegate = self
+        mainSearchBar.delegate = self
         placesCollectionView.delegate = self
         placesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
+        
+        fetchPlacesAroundUser()
+    }
+    
+    // MARK: - Helpers
+    
+    func fetchPlacesBySearch(lat: Double, long: Double) {
+        
+        fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+            
+            if let response = response {
+                self.places = response
+                DispatchQueue.main.async {
+                    self.placesCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func fetchPlacesAroundUser() {
+        
+        let userLocation = getUserLocation(locationManager: locationManager)
+        
+        fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+            
+            if let response = response {
+                self.places = response
+                DispatchQueue.main.async {
+                    self.placesCollectionView.reloadData()
+                }
+            }
+        }
     }
     
     // MARK: - Selectors
@@ -127,90 +166,5 @@ class PlacesViewController: UIViewController {
         placesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width).isActive = true
     }
     
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension PlacesViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Set different size for each collectionview
-        if collectionView == self.placesCollectionView {
-            return CGSize(width: collectionView.frame.width/1.5, height: collectionView.frame.width/1)
-        }else{
-            return CGSize(width: collectionView.frame.width/5.5, height: collectionView.frame.width/5.5)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        // Set different spacing for each collectionview
-        if collectionView == self.placesCollectionView {
-            return 30
-        }else{
-            return 20
-        }
-    }
-}
-// MARK: - UICollectionViewDataSource
-
-extension PlacesViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // return different numberOfItems for each collectionview
-        if collectionView == self.placesCollectionView {
-            return 10
-        }else{
-            return 5
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // Set different cell for each collectionview
-        if collectionView == self.placesCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PlacesCell
-            return cell
-        }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCell
-            // display data
-            cell.data = self.categoriesData[indexPath.item]
-            return cell
-        }
-    }
-    
-}
-
-// MARK: - UISearchBarDelegate
-
-extension PlacesViewController: UISearchBarDelegate {
-
-    func showSearchBar() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.searchButton.alpha = 0
-            self.mainSearchBar.alpha = 1
-            self.searchBarCancelIcon()
-        }, completion: { finished in
-            self.mainSearchBar.becomeFirstResponder()
-        })
-    }
-    
-    func hideSearchBar() {
-        searchButton.alpha = 1
-        UIView.animate(withDuration: 0.3, animations: {
-            self.mainSearchBar.alpha = 0
-        })
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        hideSearchBar()
-    }
-    
-    func searchBarCancelIcon() {
-        mainSearchBar.setValue(" ", forKey: "cancelButtonText")
-        mainSearchBar.showsCancelButton = true
-        let cancelButton = self.mainSearchBar.value(forKey: "cancelButton") as? UIButton
-        cancelButton?.tintColor = UIColor(white: 0, alpha: 0.1)
-        cancelButton?.setImage(UIImage(named: "cancel"), for: .normal)
-    }
     
 }
