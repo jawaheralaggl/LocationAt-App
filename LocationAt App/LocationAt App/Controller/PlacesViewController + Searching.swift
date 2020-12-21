@@ -63,6 +63,8 @@ extension PlacesViewController: UISearchBarDelegate {
     // Method to begin the search
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        // Scroll back to the first index after the search
+        placesCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
     }
     
 }
