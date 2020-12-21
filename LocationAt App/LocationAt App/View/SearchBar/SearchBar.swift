@@ -14,7 +14,6 @@ class SearchBar: UISearchBar {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.borderWidth = 1
-        self.placeholder = "Find places.."
     }
     
     required init?(coder aDecoder: NSCoder) {

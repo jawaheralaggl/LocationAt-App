@@ -10,6 +10,11 @@ import CoreLocation
 
 extension PlacesViewController {
     
+    // Converting CLLocationCoordinate2d to address
+    func getPlaceCoordinate(address: String, completion: @escaping(_ coordinate: CLLocationCoordinate2D?, _ error: Error?) -> () ) {
+        CLGeocoder().geocodeAddressString(address) { completion($0?.first?.location?.coordinate, $1) }
+    }
+    
     // Uses CLLocationManager to ask the user for their location
     func getUserLocation(locationManager: CLLocationManager) -> ( lat: Double, long:Double) {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -44,7 +49,7 @@ extension PlacesViewController {
         case .notDetermined:
             break
         default:
-            fetchPlaces()
+            fetchPlacesAroundUser()
         }
     }
     

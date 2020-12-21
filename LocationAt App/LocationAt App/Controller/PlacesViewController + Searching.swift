@@ -6,23 +6,37 @@
 //
 
 import UIKit
+import CoreLocation
 
 // MARK: - UISearchBarDelegate
 
 extension PlacesViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredPlaces = places.filter({ ($0.name?.contains(searchText))! })
-        placesCollectionView.reloadData()
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        let address = searchBar.text!
+        
+        // Get geographic coordinates for places name
+        getPlaceCoordinate(address: address) { coordinate, error in
+            guard let coordinate = coordinate, error == nil else { return }
+            
+            self.fetchPlacesBySearch(lat: coordinate.latitude, long: coordinate.longitude)
+            DispatchQueue.main.async {
+                print(address, "coordinate:", coordinate)
+                self.placesCollectionView.reloadData()
+            }
+        }
+        
     }
     
     func showSearchBar() {
-        UIView.animate(withDuration: 0.5, animations: {
+        mainSearchBar.placeholder = "Search by address"
+        UIView.animate(withDuration: 1, animations: {
             self.searchButton.alpha = 0
             self.mainSearchBar.alpha = 1
             self.searchBarCancelIcon()
         }, completion: { finished in
             self.mainSearchBar.becomeFirstResponder()
+            self.mainSearchBar.placeholder = "Wall Street. New York City"
         })
     }
     
@@ -31,7 +45,6 @@ extension PlacesViewController: UISearchBarDelegate {
         self.mainSearchBar.text = ""
         UIView.animate(withDuration: 0.3, animations: {
             self.mainSearchBar.alpha = 0
-            self.placesCollectionView.reloadData()
         })
     }
     
@@ -45,6 +58,11 @@ extension PlacesViewController: UISearchBarDelegate {
         let cancelButton = self.mainSearchBar.value(forKey: "cancelButton") as? UIButton
         cancelButton?.tintColor = UIColor(white: 0, alpha: 0.1)
         cancelButton?.setImage(UIImage(named: "cancel"), for: .normal)
+    }
+    
+    // Method to begin the search
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
 }

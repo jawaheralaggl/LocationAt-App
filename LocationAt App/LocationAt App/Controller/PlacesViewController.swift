@@ -21,12 +21,8 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var places: [Places] = []
-    var filteredPlaces: [Places] = []
     
     var mainSearchBar = SearchBar()
-    var isSearch: Bool {
-        return mainSearchBar.text?.isEmpty == false
-    }
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -94,12 +90,25 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         
-        fetchPlaces()
+        fetchPlacesAroundUser()
     }
     
     // MARK: - Helpers
     
-    func fetchPlaces() {
+    func fetchPlacesBySearch(lat: Double, long: Double) {
+        
+        fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+            
+            if let response = response {
+                self.places = response
+                DispatchQueue.main.async {
+                    self.placesCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func fetchPlacesAroundUser() {
         
         let userLocation = getUserLocation(locationManager: locationManager)
         
