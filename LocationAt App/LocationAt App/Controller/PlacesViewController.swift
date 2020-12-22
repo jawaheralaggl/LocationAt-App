@@ -21,6 +21,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     var places: [Places] = []
+    var weather: [Weather] = []
     
     var mainSearchBar = SearchBar()
     
@@ -93,25 +94,32 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         
-        fetchPlacesAroundUser()
+        fetchPlacesAndWeatherAroundUser()
     }
     
     // MARK: - Helpers
     
-    func fetchPlacesBySearch(lat: Double, long: Double) {
+    func fetchPlacesAndWeatherBySearch(lat: Double, long: Double) {
         
         fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
-                DispatchQueue.main.async {
-                    self.placesCollectionView.reloadData()
+                // Fetch weather data
+                self.fetchWeather(latitude: lat, longitude: long) { (response, error) in
+                    if let response = response {
+                        self.weather = response
+                        DispatchQueue.main.async {
+                            self.placesCollectionView.reloadData()
+                        }
+                    }
                 }
+                
             }
         }
     }
     
-    func fetchPlacesAroundUser() {
+    func fetchPlacesAndWeatherAroundUser() {
         
         let userLocation = getUserLocation(locationManager: locationManager)
         
@@ -119,9 +127,16 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
             
             if let response = response {
                 self.places = response
-                DispatchQueue.main.async {
-                    self.placesCollectionView.reloadData()
+                // Fetch weather data
+                self.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long) { (response, error) in
+                    if let response = response {
+                        self.weather = response
+                        DispatchQueue.main.async {
+                            self.placesCollectionView.reloadData()
+                        }
+                    }
                 }
+                
             }
         }
     }

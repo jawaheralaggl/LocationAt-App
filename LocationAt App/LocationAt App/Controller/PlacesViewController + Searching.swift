@@ -19,7 +19,7 @@ extension PlacesViewController: UISearchBarDelegate {
         getPlaceCoordinate(address: address) { coordinate, error in
             guard let coordinate = coordinate, error == nil else { return }
             
-            self.fetchPlacesBySearch(lat: coordinate.latitude, long: coordinate.longitude)
+            self.fetchPlacesAndWeatherBySearch(lat: coordinate.latitude, long: coordinate.longitude)
             DispatchQueue.main.async {
                 print(address, "coordinate:", coordinate)
                 self.placesCollectionView.reloadData()

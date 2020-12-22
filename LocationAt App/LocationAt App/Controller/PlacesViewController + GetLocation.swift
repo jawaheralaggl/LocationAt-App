@@ -49,7 +49,7 @@ extension PlacesViewController {
         case .notDetermined:
             break
         default:
-            fetchPlacesAroundUser()
+            fetchPlacesAndWeatherAroundUser()
         }
     }
     
