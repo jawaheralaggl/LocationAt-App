@@ -101,12 +101,12 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     func fetchPlacesAndWeatherBySearch(lat: Double, long: Double) {
         
-        fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
                 // Fetch weather data
-                self.fetchWeather(latitude: lat, longitude: long) { (response, error) in
+                NetworkService.shared.fetchWeather(latitude: lat, longitude: long) { (response, error) in
                     if let response = response {
                         self.weather = response
                         DispatchQueue.main.async {
@@ -123,12 +123,12 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         
         let userLocation = getUserLocation(locationManager: locationManager)
         
-        fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
                 // Fetch weather data
-                self.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long) { (response, error) in
+                NetworkService.shared.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long) { (response, error) in
                     if let response = response {
                         self.weather = response
                         DispatchQueue.main.async {

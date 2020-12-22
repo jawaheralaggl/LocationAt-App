@@ -7,7 +7,8 @@
 
 import UIKit
 
-extension PlacesViewController {
+class NetworkService {
+    static let shared = NetworkService()
     
     // Set function to fetch data from Yelp Fusion API.
     func fetchPlaces(latitude: Double, longitude: Double, category: String, limit: Int, sortBy: String, completionHandler: @escaping ([Places]?, Error?) -> Void) {
@@ -67,6 +68,8 @@ extension PlacesViewController {
     // MARK: - Fetch data from WeatherAPI.
 
     func fetchWeather(latitude: Double, longitude: Double, completionHandler: @escaping ([Weather]?, Error?) -> Void) {
+        // Set array of weather
+        var weatherList: [Weather] = []
         
         let apikey = "4864c9327f224f1c863212329202112"
         
@@ -94,9 +97,6 @@ extension PlacesViewController {
                 guard let weatherCondition = currentWeather["condition"] as? NSDictionary else { return }
                 
                 print("\(currentWeather)")
-                
-                // Set array of weather
-                var weatherList: [Weather] = []
                 
                 // Accessing weather of each places
                 for _ in currentWeather {
