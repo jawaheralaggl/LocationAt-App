@@ -15,8 +15,6 @@ class NetworkService {
         // Set array of places
         var placesList: [Places] = []
         
-        let apikey = "UUKIQnweDQKTPWj0Ud4q87f3eEg33Nm3gAWWFy9LDefkq2Q5VjQLgL5BYtmIZBgHJiAy0ZEmjDj_bRlh4ZD7NoxdFAKgUA8mRwCL7jMy6JNWgCXLYdXnI8bJrAHdX3Yx"
-        
         // Create URL
         let queryItems = [URLQueryItem(name: "latitude", value: "\(latitude)"),
                           URLQueryItem(name: "longitude", value: "\(longitude)"),
@@ -24,14 +22,14 @@ class NetworkService {
                           URLQueryItem(name: "limit", value: "\(limit)"),
                           URLQueryItem(name: "sort_by", value: sortBy)]
         
-        var yelpURL = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
+        var yelpURL = URLComponents(string: Constants.shared.yelpURL)!
         yelpURL.queryItems = queryItems
         
         let resultURL = yelpURL.url!
         
         // Create request
         var request = URLRequest(url: resultURL)
-        request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(Constants.shared.yelpApiKey)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         
         // Initialize session and task
@@ -78,13 +76,11 @@ class NetworkService {
         // Set array of weather
         var weatherList: [Weather] = []
         
-        let apikey = "4864c9327f224f1c863212329202112"
-                
         // Create URL
-        let queryItems = [URLQueryItem(name: "key", value: apikey),
+        let queryItems = [URLQueryItem(name: "key", value: Constants.shared.weatherApiKey),
                           URLQueryItem(name: "q", value: "\(latitude),\(longitude)")]
         
-        var weatherURL = URLComponents(string: "https://api.weatherapi.com/v1/current.json")!
+        var weatherURL = URLComponents(string: Constants.shared.weatherURL)!
         weatherURL.queryItems = queryItems
         
         let resultURL = weatherURL.url!

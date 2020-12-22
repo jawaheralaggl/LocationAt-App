@@ -24,6 +24,7 @@
 		A55355D2258E193E0071CE72 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D1258E193E0071CE72 /* Places.swift */; };
 		A55355D5258E19ED0071CE72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D4258E19ED0071CE72 /* NetworkService.swift */; };
 		A57FB97525920F82005817FE /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB97425920F82005817FE /* Weather.swift */; };
+		A57FB97A2592201C005817FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB9792592201C005817FE /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		A55355D1258E193E0071CE72 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		A55355D4258E19ED0071CE72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A57FB97425920F82005817FE /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		A57FB9792592201C005817FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.debug.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +129,7 @@
 		A55355C0258D1DEF0071CE72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A57FB9792592201C005817FE /* Constants.swift */,
 				A55355D1258E193E0071CE72 /* Places.swift */,
 				A57FB97425920F82005817FE /* Weather.swift */,
 				A55355D4258E19ED0071CE72 /* NetworkService.swift */,
@@ -286,6 +289,7 @@
 				A57FB97525920F82005817FE /* Weather.swift in Sources */,
 				A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */,
 				A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */,
+				A57FB97A2592201C005817FE /* Constants.swift in Sources */,
 				A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */,
 				A51BDEC0259133BB003099A8 /* DetailsViewController.swift in Sources */,
 			);
