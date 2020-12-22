@@ -18,12 +18,19 @@ class NetworkService {
         let apikey = "UUKIQnweDQKTPWj0Ud4q87f3eEg33Nm3gAWWFy9LDefkq2Q5VjQLgL5BYtmIZBgHJiAy0ZEmjDj_bRlh4ZD7NoxdFAKgUA8mRwCL7jMy6JNWgCXLYdXnI8bJrAHdX3Yx"
         
         // Create URL
-        let baseURL = "https://api.yelp.com/v3/businesses/search?latitude=\(latitude)&longitude=\(longitude)&categories=\(category)&limit=\(limit)&sort_by=\(sortBy)"
+        let queryItems = [URLQueryItem(name: "latitude", value: "\(latitude)"),
+                          URLQueryItem(name: "longitude", value: "\(longitude)"),
+                          URLQueryItem(name: "categories", value: category),
+                          URLQueryItem(name: "limit", value: "\(limit)"),
+                          URLQueryItem(name: "sort_by", value: sortBy)]
         
-        let url = URL(string: baseURL)
+        var yelpURL = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
+        yelpURL.queryItems = queryItems
+        
+        let resultURL = yelpURL.url!
         
         // Create request
-        var request = URLRequest(url: url!)
+        var request = URLRequest(url: resultURL)
         request.setValue("Bearer \(apikey)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
         
@@ -66,19 +73,24 @@ class NetworkService {
     }
     
     // MARK: - Fetch data from WeatherAPI.
-
+    
     func fetchWeather(latitude: Double, longitude: Double, completionHandler: @escaping ([Weather]?, Error?) -> Void) {
         // Set array of weather
         var weatherList: [Weather] = []
         
         let apikey = "4864c9327f224f1c863212329202112"
-        
+                
         // Create URL
-        let weatherURL = "https://api.weatherapi.com/v1/current.json?key=\(apikey)&q=\(latitude),\(longitude)"
-        let url = URL(string: weatherURL)
+        let queryItems = [URLQueryItem(name: "key", value: apikey),
+                          URLQueryItem(name: "q", value: "\(latitude),\(longitude)")]
+        
+        var weatherURL = URLComponents(string: "https://api.weatherapi.com/v1/current.json")!
+        weatherURL.queryItems = queryItems
+        
+        let resultURL = weatherURL.url!
         
         // Creating request
-        var request = URLRequest(url: url!)
+        var request = URLRequest(url: resultURL)
         request.httpMethod = "GET"
         
         // Initialize session and task
