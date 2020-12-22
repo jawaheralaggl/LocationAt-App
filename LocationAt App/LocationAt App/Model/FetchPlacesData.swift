@@ -64,4 +64,56 @@ extension PlacesViewController {
         
     }
     
+    // MARK: - Fetch data from WeatherAPI.
+
+    func fetchWeather(latitude: Double, longitude: Double, completionHandler: @escaping ([Weather]?, Error?) -> Void) {
+        
+        let apikey = "4864c9327f224f1c863212329202112"
+        
+        // Create URL
+        let weatherURL = "https://api.weatherapi.com/v1/current.json?key=\(apikey)&q=\(latitude),\(longitude)"
+        let url = URL(string: weatherURL)
+        
+        // Creating request
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        
+        // Initialize session and task
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error { completionHandler(nil, error) }
+            do {
+                // Read data as JSON
+                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                
+                // Main dictionary
+                guard let response = json as? NSDictionary else { return }
+                print(response)
+                
+                // Weather dictionaries
+                guard let currentWeather = response["current"] as? NSDictionary else { return }
+                guard let weatherCondition = currentWeather["condition"] as? NSDictionary else { return }
+                
+                print("\(currentWeather)")
+                
+                // Set array of weather
+                var weatherList: [Weather] = []
+                
+                // Accessing weather of each places
+                for _ in currentWeather {
+                    var weather = Weather()
+                    weather.temp_f = currentWeather["temp_f"] as? Double
+                    weather.text = weatherCondition["text"] as? String
+                    weather.icon = weatherCondition["icon"] as? String
+                    
+                    weatherList.append(weather)
+                }
+                completionHandler(weatherList, nil)
+            }catch{
+                print("error found")
+                completionHandler(nil, error)
+            }
+        }.resume()
+        
+    }
+    
 }
