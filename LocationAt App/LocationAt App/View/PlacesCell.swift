@@ -15,7 +15,7 @@ class PlacesCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 12
+        iv.layer.cornerRadius = 25
         iv.clipsToBounds = true
         return iv
     }()
@@ -26,7 +26,7 @@ class PlacesCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
@@ -34,7 +34,17 @@ class PlacesCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textColor = .black
         return label
+    }()
+    
+    let weatherImage: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        iv.image = #imageLiteral(resourceName: "3")
+        iv.clipsToBounds = true
+        return iv
     }()
     
     // Set isClosed variable to true or false and the properties will be set accordingly
@@ -59,24 +69,37 @@ class PlacesCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        contentView.backgroundColor = .gray
+        contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 25
+        // Set shadow to the cell
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.23
+        contentView.layer.shadowRadius = 4
         
         contentView.addSubview(placeImage)
         placeImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         placeImage.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         placeImage.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        placeImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        placeImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
         
-        placeImage.addSubview(nameLabel)
-        nameLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
-        nameLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
+        contentView.addSubview(nameLabel)
+        nameLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 8).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         
-        placeImage.addSubview(isClosedLabel)
+        contentView.addSubview(isClosedLabel)
         isClosedLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        isClosedLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 8).isActive = true
-        isClosedLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
-        isClosedLabel.trailingAnchor.constraint(equalTo: placeImage.trailingAnchor, constant: -8).isActive = true
+        isClosedLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
+        isClosedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
+        isClosedLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        isClosedLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
+        
+        contentView.addSubview(weatherImage)
+        weatherImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        weatherImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        weatherImage.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 8).isActive = true
+        weatherImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        weatherImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
