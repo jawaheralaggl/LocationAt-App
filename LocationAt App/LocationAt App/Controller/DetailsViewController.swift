@@ -100,8 +100,19 @@ class DetailsViewController: UIViewController {
         button.setTitle("Destination", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
+        button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleDestinationTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    let shareButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Share", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .lightGray
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         return button
     }()
     
@@ -160,9 +171,15 @@ class DetailsViewController: UIViewController {
         
         view.addSubview(destinationButton)
         destinationButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        destinationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        destinationButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         destinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
         destinationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(shareButton)
+        shareButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        shareButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        shareButton.trailingAnchor.constraint(equalTo: destinationButton.leadingAnchor, constant: -20).isActive = true
     }
     
     // MARK: - Helpers
@@ -179,6 +196,19 @@ class DetailsViewController: UIViewController {
     }
     
     // MARK: - Selectors
+    
+    @objc func handleShareTapped() {
+        // Data to share
+        let names = passedPlacesNames!
+        let weather = passedWeatherText!
+        let images = passedPlacesImages!
+        
+        // Set up activity view controller
+        let activityViewController = UIActivityViewController(activityItems: [names, "is: \(weather)", images], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     
     @objc func handleDestinationTapped() {
         let address = passedAdress!
