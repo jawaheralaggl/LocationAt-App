@@ -10,6 +10,8 @@ import UIKit
 class NetworkService {
     static let shared = NetworkService()
     
+    // MARK: - Fetch data from Yelp API.
+    
     // Set function to fetch data from Yelp Fusion API.
     func fetchPlaces(latitude: Double, longitude: Double, category: String, limit: Int, sortBy: String, completionHandler: @escaping ([Places]?, Error?) -> Void) {
         // Set array of places

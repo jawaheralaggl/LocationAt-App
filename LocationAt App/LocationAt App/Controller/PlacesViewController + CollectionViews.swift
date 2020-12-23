@@ -50,8 +50,8 @@ extension PlacesViewController: UICollectionViewDataSource {
             cell.configure(name: places[indexPath.row].name ?? "", isClosed: places[indexPath.row].is_closed ?? false)
             
             // Convert string to URL then set the imageView with an url
-            guard let imageUrl = URL(string: places[indexPath.row].image_url ?? "") else { return cell}
-            cell.placeImage.sd_setImage(with: imageUrl, completed: nil)
+            guard let placeImageUrl = URL(string: places[indexPath.row].image_url ?? "") else { return cell}
+            cell.placeImage.sd_setImage(with: placeImageUrl, completed: nil)
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCell
