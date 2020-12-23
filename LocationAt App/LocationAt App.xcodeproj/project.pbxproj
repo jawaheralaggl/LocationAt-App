@@ -11,6 +11,7 @@
 		A51BDE96258FAE84003099A8 /* PlacesViewController + GetLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */; };
 		A51BDE9C258FB220003099A8 /* PlacesViewController + Searching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */; };
 		A51BDE9F258FB27D003099A8 /* PlacesViewController + CollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */; };
+		A51BDEC0259133BB003099A8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDEBF259133BB003099A8 /* DetailsViewController.swift */; };
 		A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553557F258CD4C50071CE72 /* AppDelegate.swift */; };
 		A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535581258CD4C50071CE72 /* SceneDelegate.swift */; };
 		A5535584258CD4C50071CE72 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535583258CD4C50071CE72 /* PlacesViewController.swift */; };
@@ -21,7 +22,9 @@
 		A55355CA258D22630071CE72 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355C9258D22630071CE72 /* CategoriesCell.swift */; };
 		A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355CC258D2A240071CE72 /* SearchBar.swift */; };
 		A55355D2258E193E0071CE72 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D1258E193E0071CE72 /* Places.swift */; };
-		A55355D5258E19ED0071CE72 /* FetchPlacesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D4258E19ED0071CE72 /* FetchPlacesData.swift */; };
+		A55355D5258E19ED0071CE72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D4258E19ED0071CE72 /* NetworkService.swift */; };
+		A57FB97525920F82005817FE /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB97425920F82005817FE /* Weather.swift */; };
+		A57FB97A2592201C005817FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB9792592201C005817FE /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,7 @@
 		A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + GetLocation.swift"; sourceTree = "<group>"; };
 		A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + Searching.swift"; sourceTree = "<group>"; };
 		A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + CollectionViews.swift"; sourceTree = "<group>"; };
+		A51BDEBF259133BB003099A8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A553557C258CD4C50071CE72 /* LocationAt App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LocationAt App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A553557F258CD4C50071CE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5535581258CD4C50071CE72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +46,9 @@
 		A55355C9258D22630071CE72 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		A55355CC258D2A240071CE72 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A55355D1258E193E0071CE72 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
-		A55355D4258E19ED0071CE72 /* FetchPlacesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPlacesData.swift; sourceTree = "<group>"; };
+		A55355D4258E19ED0071CE72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A57FB97425920F82005817FE /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		A57FB9792592201C005817FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.debug.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +121,7 @@
 				A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */,
 				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
 				A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */,
+				A51BDEBF259133BB003099A8 /* DetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -122,8 +129,10 @@
 		A55355C0258D1DEF0071CE72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A57FB9792592201C005817FE /* Constants.swift */,
 				A55355D1258E193E0071CE72 /* Places.swift */,
-				A55355D4258E19ED0071CE72 /* FetchPlacesData.swift */,
+				A57FB97425920F82005817FE /* Weather.swift */,
+				A55355D4258E19ED0071CE72 /* NetworkService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,12 +283,15 @@
 				A5535584258CD4C50071CE72 /* PlacesViewController.swift in Sources */,
 				A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */,
 				A55355D2258E193E0071CE72 /* Places.swift in Sources */,
-				A55355D5258E19ED0071CE72 /* FetchPlacesData.swift in Sources */,
+				A55355D5258E19ED0071CE72 /* NetworkService.swift in Sources */,
 				A51BDE9C258FB220003099A8 /* PlacesViewController + Searching.swift in Sources */,
 				A51BDE96258FAE84003099A8 /* PlacesViewController + GetLocation.swift in Sources */,
+				A57FB97525920F82005817FE /* Weather.swift in Sources */,
 				A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */,
 				A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */,
+				A57FB97A2592201C005817FE /* Constants.swift in Sources */,
 				A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */,
+				A51BDEC0259133BB003099A8 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -411,7 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

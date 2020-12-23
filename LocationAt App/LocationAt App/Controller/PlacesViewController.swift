@@ -16,11 +16,13 @@ struct CustomData {
 class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - properties
+    static let shared = PlacesViewController()
     
     // Uses CLLocationManager to ask the user for their location
     let locationManager = CLLocationManager()
     
     var places: [Places] = []
+    var weather: [Weather] = []
     
     var mainSearchBar = SearchBar()
     
@@ -81,6 +83,10 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         configureUI()
         
         mainSearchBar.alpha = 0
+        // Dismiss Keyboard when touch the view
+        let tap = UITapGestureRecognizer(target: self.view ,action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
         
         // Set delegates to this VC
         locationManager.delegate = self
@@ -90,35 +96,49 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
         
-        fetchPlacesAroundUser()
+        fetchPlacesAndWeatherAroundUser()
     }
     
     // MARK: - Helpers
     
-    func fetchPlacesBySearch(lat: Double, long: Double) {
+    func fetchPlacesAndWeatherBySearch(lat: Double, long: Double) {
         
-        fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
-                DispatchQueue.main.async {
-                    self.placesCollectionView.reloadData()
+                // Fetch weather data
+                NetworkService.shared.fetchWeather(latitude: lat, longitude: long) { (response, error) in
+                    if let response = response {
+                        self.weather = response
+                        DispatchQueue.main.async {
+                            self.placesCollectionView.reloadData()
+                        }
+                    }
                 }
+                
             }
         }
     }
     
-    func fetchPlacesAroundUser() {
+    func fetchPlacesAndWeatherAroundUser() {
         
         let userLocation = getUserLocation(locationManager: locationManager)
         
-        fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
-                DispatchQueue.main.async {
-                    self.placesCollectionView.reloadData()
+                // Fetch weather data
+                NetworkService.shared.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long) { (response, error) in
+                    if let response = response {
+                        self.weather = response
+                        DispatchQueue.main.async {
+                            self.placesCollectionView.reloadData()
+                        }
+                    }
                 }
+                
             }
         }
     }

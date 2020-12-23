@@ -39,8 +39,8 @@ extension PlacesViewController {
             break
         }
         
-        // If fail to get current location or denied location tracking, return coordinates for San Francisco
-        return (Double(37.773972), Double(-122.431297))
+        // If fail, return coordinates for San Francisco
+        return Constants.shared.sanFranciscoCoords
     }
     
     // Method to see what the new state is, If the user allowed us to track their location, get new data(Places)
@@ -49,7 +49,7 @@ extension PlacesViewController {
         case .notDetermined:
             break
         default:
-            fetchPlacesAroundUser()
+            fetchPlacesAndWeatherAroundUser()
         }
     }
     
