@@ -9,10 +9,6 @@ import UIKit
 import SDWebImage
 import CoreLocation
 
-struct CustomData {
-    var image: UIImage
-}
-
 class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - properties
@@ -47,16 +43,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         return button
     }()
     
-    let categoriesCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.showsHorizontalScrollIndicator = false
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(CategoriesCell.self, forCellWithReuseIdentifier: "cell")
-        return cv
-    }()
-    
     let placesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -66,15 +52,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         cv.register(PlacesCell.self, forCellWithReuseIdentifier: "cell")
         return cv
     }()
-    
-    // dummy data for testing..
-    let categoriesData = [
-        CustomData(image: #imageLiteral(resourceName: "2")),
-        CustomData(image: #imageLiteral(resourceName: "1")),
-        CustomData(image: #imageLiteral(resourceName: "3")),
-        CustomData(image: #imageLiteral(resourceName: "2")),
-        CustomData(image: #imageLiteral(resourceName: "1")),
-    ]
     
     // MARK: - Lifecycle
     
@@ -93,8 +70,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         mainSearchBar.delegate = self
         placesCollectionView.delegate = self
         placesCollectionView.dataSource = self
-        categoriesCollectionView.delegate = self
-        categoriesCollectionView.dataSource = self
         
         fetchPlacesAndWeatherAroundUser()
     }
@@ -103,7 +78,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     func fetchPlacesAndWeatherBySearch(lat: Double, long: Double) {
         
-        NetworkService.shared.fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 20, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
@@ -125,7 +100,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         
         let userLocation = getUserLocation(locationManager: locationManager)
         
-        NetworkService.shared.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 25, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 20, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
@@ -171,20 +146,12 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         mainSearchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
-        view.addSubview(categoriesCollectionView)
-        categoriesCollectionView.backgroundColor = .white
-        categoriesCollectionView.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor).isActive = true
-        categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        categoriesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 3.5).isActive = true
-        
         view.addSubview(placesCollectionView)
         placesCollectionView.backgroundColor = .white
-        placesCollectionView.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: -10).isActive = true
+        placesCollectionView.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor, constant: 10).isActive = true
         placesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         placesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         placesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 0.8).isActive = true
     }
-    
     
 }
