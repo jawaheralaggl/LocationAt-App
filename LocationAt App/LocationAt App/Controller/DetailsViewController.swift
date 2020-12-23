@@ -19,6 +19,7 @@ class DetailsViewController: UIViewController {
     var passedWeatherText: String!
     var passedPlacesImages: URL!
     var passedWeatherImages: URL!
+    var passedAdress: String!
     
     // Change the properties accordingly
     var isClosed: Bool = false {
@@ -93,6 +94,16 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
+    let destinationButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Destination", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(handleDestinationTapped), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Lifecycle
     
@@ -147,17 +158,49 @@ class DetailsViewController: UIViewController {
         weatherText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
         weatherText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         
+        view.addSubview(destinationButton)
+        destinationButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        destinationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        destinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        destinationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
     }
     
     // MARK: - Helpers
     
-    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String) {
+    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String) {
         self.passedPlacesNames = placeName
         self.passedPlacesImages = placeImage
         self.passedIsClosed = isClosed
         self.passedWeatherImages = weatherImages
         self.passedWeatherTemps = weatherTemp
         self.passedWeatherText = weatherText
+        
+        self.passedAdress = address
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func handleDestinationTapped() {
+        let address = passedAdress!
+        
+        let userLocation = PlacesViewController.shared.getUserLocation(locationManager: PlacesViewController.shared.locationManager)
+        
+        PlacesViewController.shared.getPlaceCoordinate(address: address) { coordinate, error in
+            guard let coordinate = coordinate, error == nil else { return }
+            
+            // Check if user has the app in his device
+            if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+                if let url = URL(string: "comgooglemaps-x-callback://?saddr=\(userLocation.lat),\(userLocation.long)&daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving") {
+                    UIApplication.shared.open(url, options: [:])
+                }
+            }else{
+                // If not, open in browser
+                if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=\(userLocation.lat),\(userLocation.long)&daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving") {
+                    UIApplication.shared.open(urlDestination)
+                }
+            }
+            
+        }
     }
     
 }

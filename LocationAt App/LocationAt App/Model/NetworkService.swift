@@ -47,6 +47,8 @@ class NetworkService {
                 // Businesses(Places)
                 guard let businesses = response.value(forKey: "businesses") as? [NSDictionary] else { return }
                 
+                print("\(businesses)")
+                
                 // Accessing each business(places)
                 for business in businesses {
                     var place = Places()

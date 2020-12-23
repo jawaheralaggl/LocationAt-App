@@ -77,7 +77,7 @@ extension PlacesViewController: UICollectionViewDataSource {
                                 placeImage: placeImageUrl,
                                 weatherImages: weatherImageUrl,
                                 weatherTemp: "\(weather[indexPath.row].temp_f ?? 0.0) °F",
-                                weatherText: weather[indexPath.row].text ?? "")
+                                weatherText: weather[indexPath.row].text ?? "", address: places[indexPath.row].address ?? "")
             present(controller, animated: true)
         }
     }

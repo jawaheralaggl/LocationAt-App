@@ -16,6 +16,7 @@ struct CustomData {
 class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - properties
+    static let shared = PlacesViewController()
     
     // Uses CLLocationManager to ask the user for their location
     let locationManager = CLLocationManager()
