@@ -183,7 +183,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         placesCollectionView.topAnchor.constraint(equalTo: categoriesCollectionView.bottomAnchor, constant: -10).isActive = true
         placesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         placesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        placesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        placesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 0.8).isActive = true
     }
     
     

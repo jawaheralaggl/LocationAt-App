@@ -14,7 +14,7 @@ extension PlacesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Set different size for each collectionview
         if collectionView == self.placesCollectionView {
-            return CGSize(width: collectionView.frame.width/1.5, height: collectionView.frame.width/1)
+            return CGSize(width: collectionView.frame.width/1.5, height: collectionView.frame.width/0.8)
         }else{
             return CGSize(width: collectionView.frame.width/5.5, height: collectionView.frame.width/5.5)
         }
@@ -77,7 +77,9 @@ extension PlacesViewController: UICollectionViewDataSource {
                                 placeImage: placeImageUrl,
                                 weatherImages: weatherImageUrl,
                                 weatherTemp: "\(weather[indexPath.row].temp_f ?? 0.0) °F",
-                                weatherText: weather[indexPath.row].text ?? "", address: places[indexPath.row].address ?? "")
+                                weatherText: weather[indexPath.row].text ?? "",
+                                address: places[indexPath.row].address ?? "",
+                                rating: "\(places[indexPath.row].rating ?? 0.0)")
             present(controller, animated: true)
         }
     }
