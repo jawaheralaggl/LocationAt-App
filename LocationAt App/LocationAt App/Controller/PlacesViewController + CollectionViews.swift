@@ -50,14 +50,35 @@ extension PlacesViewController: UICollectionViewDataSource {
             cell.configure(name: places[indexPath.row].name ?? "", isClosed: places[indexPath.row].is_closed ?? false)
             
             // Convert string to URL then set the imageView with an url
-            guard let placeImageUrl = URL(string: places[indexPath.row].image_url ?? "") else { return cell}
+            guard let placeImageUrl = URL(string: places[indexPath.row].image_url ?? "") else { return cell }
             cell.placeImage.sd_setImage(with: placeImageUrl, completed: nil)
+            guard let weatherImageUrl = URL(string: "https:\(weather[indexPath.row].icon ?? "")") else { return cell }
+            cell.weatherImage.sd_setImage(with: weatherImageUrl, completed: nil)
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoriesCell
             // display data
             cell.data = self.categoriesData[indexPath.item]
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.placesCollectionView {
+            let controller = DetailsViewController()
+            
+            // convert strint to URL
+            guard let placeImageUrl = URL(string: places[indexPath.row].image_url ?? "") else { return }
+            guard let weatherImageUrl = URL(string: "https:\(weather[indexPath.row].icon ?? "")") else { return }
+            
+            // pass selected cell data to next view
+            controller.passData(for: places[indexPath.row].name ?? "",
+                                isClosed: places[indexPath.row].is_closed ?? false,
+                                placeImage: placeImageUrl,
+                                weatherImages: weatherImageUrl,
+                                weatherTemp: "\(weather[indexPath.row].temp_f ?? 0.0) °F",
+                                weatherText: weather[indexPath.row].text ?? "")
+            present(controller, animated: true)
         }
     }
     

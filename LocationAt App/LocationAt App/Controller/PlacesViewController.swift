@@ -85,6 +85,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         // Dismiss Keyboard when touch the view
         let tap = UITapGestureRecognizer(target: self.view ,action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        tap.cancelsTouchesInView = false
         
         // Set delegates to this VC
         locationManager.delegate = self

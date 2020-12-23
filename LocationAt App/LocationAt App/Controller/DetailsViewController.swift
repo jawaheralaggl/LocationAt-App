@@ -6,10 +6,34 @@
 //
 
 import UIKit
+import SDWebImage
+import QuartzCore
 
 class DetailsViewController: UIViewController {
     
     // MARK: - properties
+    
+    var passedPlacesNames: String!
+    var passedIsClosed: Bool!
+    var passedWeatherTemps: String!
+    var passedWeatherText: String!
+    var passedPlacesImages: URL!
+    var passedWeatherImages: URL!
+    
+    // Change the properties accordingly
+    var isClosed: Bool = false {
+        didSet {
+            if isClosed {
+                isClosedLabel.text = "Closed"
+                isClosedLabel.textColor = .white
+                isClosedLabel.backgroundColor = .red
+            } else {
+                isClosedLabel.text = "Open"
+                isClosedLabel.textColor = .white
+                isClosedLabel.backgroundColor = .systemGreen
+            }
+        }
+    }
     
     let placeImage: UIImageView = {
         let iv = UIImageView()
@@ -65,7 +89,6 @@ class DetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.text = "cloudy"
         label.textColor = .black
         return label
     }()
@@ -76,13 +99,22 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
+        
+        nameLabel.text = passedPlacesNames
+        isClosed = passedIsClosed
+        
+        weatherTemp.text = passedWeatherTemps
+        weatherText.text = passedWeatherText
+        
+        placeImage.sd_setImage(with: passedPlacesImages, completed: nil)
+        weatherImage.sd_setImage(with: passedWeatherImages, completed: nil)
     }
     
     func configureUI(){
         view.addSubview(placeImage)
-        placeImage.heightAnchor.constraint(equalToConstant: 450).isActive = true
-        placeImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 25).isActive = true
+        placeImage.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        placeImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         placeImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         placeImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
@@ -100,19 +132,32 @@ class DetailsViewController: UIViewController {
         view.addSubview(weatherImage)
         weatherImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
         weatherImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        weatherImage.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 115).isActive = true
+        weatherImage.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 50).isActive = true
         weatherImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60).isActive = true
         
         view.addSubview(weatherTemp)
         weatherTemp.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        weatherTemp.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 130).isActive = true
-        weatherTemp.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 10).isActive = true
+        weatherTemp.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 65).isActive = true
+        weatherTemp.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 8).isActive = true
+        weatherTemp.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         
         view.addSubview(weatherText)
         weatherText.widthAnchor.constraint(equalToConstant: 120).isActive = true
         weatherText.topAnchor.constraint(equalTo: weatherTemp.bottomAnchor, constant: 10).isActive = true
-        weatherText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 180).isActive = true
+        weatherText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
+        weatherText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         
+    }
+    
+    // MARK: - Helpers
+    
+    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String) {
+        self.passedPlacesNames = placeName
+        self.passedPlacesImages = placeImage
+        self.passedIsClosed = isClosed
+        self.passedWeatherImages = weatherImages
+        self.passedWeatherTemps = weatherTemp
+        self.passedWeatherText = weatherText
     }
     
 }

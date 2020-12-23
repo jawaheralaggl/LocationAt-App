@@ -89,7 +89,7 @@ class PlacesCell: UICollectionViewCell {
         
         contentView.addSubview(isClosedLabel)
         isClosedLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        isClosedLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
+        isClosedLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         isClosedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         isClosedLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         isClosedLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
