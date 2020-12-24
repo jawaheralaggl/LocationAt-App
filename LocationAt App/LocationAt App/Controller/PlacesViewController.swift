@@ -26,10 +26,10 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 50)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 40)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = UIColor(named: "Deep Sapphire")
+        label.textColor = Constants.shared.mainColor
         label.text = "What would you like to find?"
         return label
     }()

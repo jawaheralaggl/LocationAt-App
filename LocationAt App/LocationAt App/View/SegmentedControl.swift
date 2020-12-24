@@ -59,7 +59,7 @@ class SegmentedControl: UIControl {
             label.text = items[index - 1]
             label.backgroundColor = .clear
             label.textAlignment = .center
-            label.font = UIFont(name: "Avenir-Black", size: 14)
+            label.font = UIFont(name: Constants.shared.mainFont, size: 14)
             label.textColor = index == 1 ? .white : .lightGray
             
             addSubview(label)
@@ -77,7 +77,7 @@ class SegmentedControl: UIControl {
             let label = labels[selectedIndex]
             label.textColor = .white
             thumbView.frame = label.frame
-            thumbView.backgroundColor = UIColor(named: "Deep Sapphire")
+            thumbView.backgroundColor = Constants.shared.mainColor
             thumbView.layer.cornerRadius = thumbView.frame.height / 2
             displayNewSelectedIndex()
         }

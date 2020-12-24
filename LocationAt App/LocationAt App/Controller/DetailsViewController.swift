@@ -27,11 +27,9 @@ class DetailsViewController: UIViewController {
         didSet {
             if isClosed {
                 isClosedLabel.text = "Closed"
-                isClosedLabel.textColor = .white
                 isClosedLabel.backgroundColor = .red
             } else {
                 isClosedLabel.text = "Open"
-                isClosedLabel.textColor = .white
                 isClosedLabel.backgroundColor = .systemGreen
             }
         }
@@ -49,12 +47,12 @@ class DetailsViewController: UIViewController {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
+        label.font = UIFont(name: Constants.shared.mainFont, size: 18)
+        label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textColor = .white
-        label.backgroundColor = UIColor(white: 0.3, alpha: 0.3)
+        label.backgroundColor = Constants.shared.clearColor
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         return label
@@ -63,7 +61,8 @@ class DetailsViewController: UIViewController {
     let isClosedLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 16)
+        label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
@@ -82,7 +81,7 @@ class DetailsViewController: UIViewController {
     let weatherTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 30)
         label.textColor = .black
         return label
     }()
@@ -90,7 +89,7 @@ class DetailsViewController: UIViewController {
     let weatherText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 20)
         label.textColor = .black
         return label
     }()
@@ -100,7 +99,8 @@ class DetailsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Destination", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "Deep Sapphire")
+        button.titleLabel?.font =  UIFont(name: Constants.shared.mainFont, size: 25)
+        button.backgroundColor = Constants.shared.mainColor
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleDestinationTapped), for: .touchUpInside)
         return button
@@ -111,7 +111,7 @@ class DetailsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Share", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(white: 0.3, alpha: 0.3)
+        button.backgroundColor = Constants.shared.clearColor
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         return button
@@ -121,7 +121,7 @@ class DetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.backgroundColor = UIColor(white: 0.3, alpha: 0.3)
+        label.backgroundColor = Constants.shared.clearColor
         label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 25
@@ -157,7 +157,6 @@ class DetailsViewController: UIViewController {
         placeImage.addSubview(nameLabel)
         nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
-        // nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         placeImage.addSubview(isClosedLabel)
         isClosedLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
