@@ -109,8 +109,7 @@ class DetailsViewController: UIViewController {
     let shareButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Share", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(named: "share"), for: .normal)
         button.backgroundColor = Constants.shared.clearColor
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
