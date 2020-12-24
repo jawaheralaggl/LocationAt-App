@@ -42,7 +42,6 @@ class PlacesCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "3")
         iv.clipsToBounds = true
         return iv
     }()

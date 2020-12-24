@@ -19,6 +19,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     var places: [Places] = []
     var weather: [Weather] = []
+    var categories: String = ""
     
     var mainSearchBar = SearchBar()
     
@@ -64,6 +65,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        cunfigureSegmentedCtrl()
         
         mainSearchBar.alpha = 0
         // Dismiss Keyboard when touch the view
@@ -84,7 +86,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     func fetchPlacesAndWeatherBySearch(lat: Double, long: Double) {
         
-        NetworkService.shared.fetchPlaces(latitude: lat, longitude: long, category: "coffee", limit: 20, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: lat, longitude: long, category: categories, limit: 20, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
@@ -106,7 +108,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         
         let userLocation = getUserLocation(locationManager: locationManager)
         
-        NetworkService.shared.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: "coffee", limit: 20, sortBy: "distance") { (response, error) in
+        NetworkService.shared.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: categories, limit: 20, sortBy: "distance") { (response, error) in
             
             if let response = response {
                 self.places = response
@@ -130,7 +132,30 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         showSearchBar()
     }
     
+    @objc func segmentValueChanged(){
+        switch segmentedControl.selectedIndex {
+        case 0:
+            categories = "restaurants"
+        case 1:
+            categories = "coffee"
+        case 2:
+            categories = "amusementparks"
+        case 3:
+            categories = "hotels"
+        default:
+            break
+        }
+        fetchPlacesAndWeatherAroundUser()
+    }
+    
+    
     // MARK: - layout
+    
+    func cunfigureSegmentedCtrl() {
+        segmentedControl.items = ["Restaurants", "Coffee", "Parks", "Hotels"]
+        segmentedControl.selectedIndex = 0
+        segmentedControl.addTarget(self, action: #selector(segmentValueChanged), for: .valueChanged)
+    }
     
     func configureUI() {
         
