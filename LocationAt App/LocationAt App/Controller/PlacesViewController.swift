@@ -25,10 +25,10 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont.boldSystemFont(ofSize: 50)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .systemBlue
+        label.textColor = UIColor(named: "Deep Sapphire")
         label.text = "What would you like to find?"
         return label
     }()
@@ -41,6 +41,12 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         button.setImage(UIImage(named: "search"), for: .normal)
         button.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         return button
+    }()
+    
+    let segmentedControl: SegmentedControl = {
+        let segmentedCtrl = SegmentedControl()
+        segmentedCtrl.translatesAutoresizingMaskIntoConstraints = false
+        return segmentedCtrl
     }()
     
     let placesCollectionView: UICollectionView = {
@@ -146,9 +152,15 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         mainSearchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
+        view.addSubview(segmentedControl)
+        segmentedControl.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor, constant: 8).isActive = true
+        segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        segmentedControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         view.addSubview(placesCollectionView)
         placesCollectionView.backgroundColor = .white
-        placesCollectionView.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor, constant: 10).isActive = true
+        placesCollectionView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8).isActive = true
         placesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         placesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         placesCollectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 0.8).isActive = true
