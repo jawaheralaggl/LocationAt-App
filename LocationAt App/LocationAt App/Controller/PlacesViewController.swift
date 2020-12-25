@@ -40,6 +40,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         button.tintColor = .darkGray
         button.backgroundColor =  UIColor(white: 0, alpha: 0.1)
         button.setImage(UIImage(named: "recent"), for: .normal)
+        button.addTarget(self, action: #selector(recentsButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -136,6 +137,11 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // MARK: - Selectors
+    
+    @objc func recentsButtonPressed() {
+        let controller = RecentsViewController()
+        present(controller, animated: true)
+    }
     
     @objc func searchButtonPressed() {
         showSearchBar()
