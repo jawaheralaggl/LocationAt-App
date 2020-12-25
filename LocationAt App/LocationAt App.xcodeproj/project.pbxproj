@@ -25,6 +25,7 @@
 		A57FB97525920F82005817FE /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB97425920F82005817FE /* Weather.swift */; };
 		A57FB97A2592201C005817FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB9792592201C005817FE /* Constants.swift */; };
 		A597BF702596742B00BF6643 /* RecentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF6F2596742B00BF6643 /* RecentsCell.swift */; };
+		A597BF76259674F800BF6643 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF75259674F800BF6643 /* RecentsViewController.swift */; };
 		A5B23CF42593DFCB003F026F /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B23CF32593DFCB003F026F /* SegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		A57FB97425920F82005817FE /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A57FB9792592201C005817FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A597BF6F2596742B00BF6643 /* RecentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCell.swift; sourceTree = "<group>"; };
+		A597BF75259674F800BF6643 /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		A5B23CF32593DFCB003F026F /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.debug.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
 				A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */,
 				A51BDEBF259133BB003099A8 /* DetailsViewController.swift */,
+				A597BF75259674F800BF6643 /* RecentsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				A51BDE9C258FB220003099A8 /* PlacesViewController + Searching.swift in Sources */,
 				A51BDE96258FAE84003099A8 /* PlacesViewController + GetLocation.swift in Sources */,
 				A597BF702596742B00BF6643 /* RecentsCell.swift in Sources */,
+				A597BF76259674F800BF6643 /* RecentsViewController.swift in Sources */,
 				A57FB97525920F82005817FE /* Weather.swift in Sources */,
 				A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */,
 				A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */,
