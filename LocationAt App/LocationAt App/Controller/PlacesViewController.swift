@@ -34,6 +34,15 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         return label
     }()
     
+    let recentsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .darkGray
+        button.backgroundColor =  UIColor(white: 0, alpha: 0.1)
+        button.setImage(UIImage(named: "recent"), for: .normal)
+        return button
+    }()
+    
     let searchButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -164,17 +173,24 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         
+        view.addSubview(recentsButton)
+        recentsButton.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10).isActive = true
+        recentsButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        recentsButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        recentsButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        recentsButton.layer.cornerRadius = 10
+        
         view.addSubview(searchButton)
-        searchButton.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 15).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        searchButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        searchButton.layer.cornerRadius = 30 / 2
+        searchButton.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 10).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        searchButton.leftAnchor.constraint(equalTo: recentsButton.rightAnchor, constant: 8).isActive = true
+        searchButton.layer.cornerRadius = 10
         
         view.addSubview(mainSearchBar)
         mainSearchBar.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 5).isActive = true
         mainSearchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        mainSearchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        mainSearchBar.leftAnchor.constraint(equalTo: recentsButton.rightAnchor, constant: 5).isActive = true
         mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
         view.addSubview(segmentedControl)
