@@ -20,4 +20,8 @@ class Constants {
     
     let sanFranciscoCoords = (Double(37.773972), Double(-122.431297))
     
+    let mainFont = "Avenir-Black"
+    
+    let mainColor = UIColor(named: "Deep Sapphire")
+    let clearColor = UIColor(white: 0.3, alpha: 0.3)
 }

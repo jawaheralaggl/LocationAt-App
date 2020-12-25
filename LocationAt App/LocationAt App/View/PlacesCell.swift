@@ -23,7 +23,7 @@ class PlacesCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 17)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textColor = .black
@@ -33,7 +33,7 @@ class PlacesCell: UICollectionViewCell {
     let isClosedLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 15)
         label.textColor = .black
         return label
     }()
@@ -42,7 +42,6 @@ class PlacesCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "3")
         iv.clipsToBounds = true
         return iv
     }()
@@ -83,7 +82,7 @@ class PlacesCell: UICollectionViewCell {
         placeImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
         
         contentView.addSubview(nameLabel)
-        nameLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        nameLabel.widthAnchor.constraint(equalToConstant: 190).isActive = true
         nameLabel.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 8).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         
@@ -91,7 +90,7 @@ class PlacesCell: UICollectionViewCell {
         isClosedLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         isClosedLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         isClosedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        isClosedLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
+        isClosedLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
         isClosedLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         
         contentView.addSubview(weatherImage)

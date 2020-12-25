@@ -20,17 +20,16 @@ class DetailsViewController: UIViewController {
     var passedPlacesImages: URL!
     var passedWeatherImages: URL!
     var passedAdress: String!
+    var passedRating: String!
     
     // Change the properties accordingly
     var isClosed: Bool = false {
         didSet {
             if isClosed {
                 isClosedLabel.text = "Closed"
-                isClosedLabel.textColor = .white
                 isClosedLabel.backgroundColor = .red
             } else {
                 isClosedLabel.text = "Open"
-                isClosedLabel.textColor = .white
                 isClosedLabel.backgroundColor = .systemGreen
             }
         }
@@ -48,12 +47,12 @@ class DetailsViewController: UIViewController {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
+        label.font = UIFont(name: Constants.shared.mainFont, size: 18)
+        label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .black
-        label.backgroundColor = .white
+        label.textColor = .white
+        label.backgroundColor = Constants.shared.clearColor
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         return label
@@ -62,7 +61,8 @@ class DetailsViewController: UIViewController {
     let isClosedLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 16)
+        label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
@@ -81,7 +81,7 @@ class DetailsViewController: UIViewController {
     let weatherTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 30)
         label.textColor = .black
         return label
     }()
@@ -89,7 +89,7 @@ class DetailsViewController: UIViewController {
     let weatherText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 20)
         label.textColor = .black
         return label
     }()
@@ -99,10 +99,33 @@ class DetailsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Destination", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
+        button.titleLabel?.font =  UIFont(name: Constants.shared.mainFont, size: 25)
+        button.backgroundColor = Constants.shared.mainColor
+        button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleDestinationTapped), for: .touchUpInside)
         return button
+    }()
+    
+    let shareButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "share"), for: .normal)
+        button.backgroundColor = Constants.shared.clearColor
+        button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    let ratingLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.backgroundColor = Constants.shared.clearColor
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 25
+        label.layer.masksToBounds = true
+        return label
     }()
     
     // MARK: - Lifecycle
@@ -113,6 +136,7 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = .white
         
         nameLabel.text = passedPlacesNames
+        ratingLabel.text = "★ " + passedRating
         isClosed = passedIsClosed
         
         weatherTemp.text = passedWeatherTemps
@@ -130,8 +154,8 @@ class DetailsViewController: UIViewController {
         placeImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
         placeImage.addSubview(nameLabel)
+        nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         placeImage.addSubview(isClosedLabel)
         isClosedLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
@@ -159,18 +183,33 @@ class DetailsViewController: UIViewController {
         weatherText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         
         view.addSubview(destinationButton)
-        destinationButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        destinationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        destinationButton.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        destinationButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
         destinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
         destinationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(shareButton)
+        shareButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        shareButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        shareButton.trailingAnchor.constraint(equalTo: destinationButton.leadingAnchor, constant: -20).isActive = true
+        
+        placeImage.addSubview(ratingLabel)
+        ratingLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        ratingLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
+        ratingLabel.trailingAnchor.constraint(equalTo: placeImage.trailingAnchor, constant: -8).isActive = true
+        ratingLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     // MARK: - Helpers
     
-    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String) {
+    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String, rating: String) {
         self.passedPlacesNames = placeName
         self.passedPlacesImages = placeImage
         self.passedIsClosed = isClosed
+        self.passedRating = rating
+        
         self.passedWeatherImages = weatherImages
         self.passedWeatherTemps = weatherTemp
         self.passedWeatherText = weatherText
@@ -179,6 +218,19 @@ class DetailsViewController: UIViewController {
     }
     
     // MARK: - Selectors
+    
+    @objc func handleShareTapped() {
+        // Data to share
+        let names = passedPlacesNames!
+        let weather = passedWeatherText!
+        let images = passedPlacesImages!
+        
+        // Set up activity view controller
+        let activityViewController = UIActivityViewController(activityItems: [names, "is: \(weather)", images], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     
     @objc func handleDestinationTapped() {
         let address = passedAdress!
