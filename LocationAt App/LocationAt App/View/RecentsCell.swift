@@ -10,16 +10,24 @@ import UIKit
 class RecentsCell: UITableViewCell {
     
     lazy var mainView: UIView = {
-       let view = UIView(frame: CGRect(x: 10, y: 6, width: self.frame.width + 70, height: 60))
+       let view = UIView(frame: CGRect(x: 10, y: 6, width: self.frame.width + 70, height: 80))
         view.backgroundColor = Constants.shared.clearColor
         return view
     }()
     
     lazy var nameLabel: UILabel = {
-       let lbl = UILabel(frame: CGRect(x: 8, y: 8, width: mainView.frame.width - 116, height: 30))
+       let lbl = UILabel(frame: CGRect(x: 8, y: 8, width: mainView.frame.width - 8, height: 30))
         lbl.textAlignment = .left
-        lbl.font = UIFont.boldSystemFont(ofSize: 18)
+        lbl.font = UIFont(name: Constants.shared.mainFont, size: 18)
         lbl.textColor = Constants.shared.mainColor
+        return lbl
+    }()
+    
+    lazy var addressLabel: UILabel = {
+       let lbl = UILabel(frame: CGRect(x: 8, y: 40, width: mainView.frame.width - 8, height: 30))
+        lbl.textAlignment = .left
+        lbl.font = UIFont(name: Constants.shared.mainFont, size: 15)
+        lbl.textColor = .white
         return lbl
     }()
     
@@ -40,6 +48,7 @@ class RecentsCell: UITableViewCell {
         // Configure the view for the selected state
         addSubview(mainView)
         mainView.addSubview(nameLabel)
+        mainView.addSubview(addressLabel)
     }
 
 }
