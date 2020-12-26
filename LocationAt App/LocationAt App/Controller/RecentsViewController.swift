@@ -17,9 +17,24 @@ class RecentsViewController: UIViewController {
     
     var savedNames: [String] = []
     var savedAddress: [String] = []
-
+    
     var tableView = UITableView()
     let cellId = "cell"
+    
+    lazy var headerView: UIView = {
+        let view = UIView(frame: CGRect(x: 10, y: 6, width: tableView.frame.width, height: 60))
+        view.backgroundColor = Constants.shared.mainColor
+        return view
+    }()
+    
+    let titleLabel: UILabel = {
+        let lbl = UILabel(frame: CGRect(x: 150, y: 8, width: 100, height: 50))
+        lbl.textAlignment = .center
+        lbl.text = "Recents"
+        lbl.font = UIFont(name: Constants.shared.mainFont, size: 25)
+        lbl.textColor = .white
+        return lbl
+    }()
     
     // MARK: - Lifecycle
     
@@ -27,6 +42,9 @@ class RecentsViewController: UIViewController {
         super.viewDidLoad()
         setTableView()
         renderRecents()
+        
+        headerView.addSubview(titleLabel)
+        self.tableView.tableHeaderView = headerView
     }
     
     // MARK: - Helpers
@@ -67,13 +85,14 @@ extension RecentsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RecentsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RecentsCell
         cell.nameLabel.text = savedNames[indexPath.row]
+        cell.addressLabel.text = "● " + savedAddress[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
-   
+    
 }
