@@ -15,7 +15,7 @@ class RecentsViewController: UIViewController {
     // Create instance of Realm
     let realm = try! Realm()
     
-    var savedNames: [String] = []
+    var savedNames: [String]? = []
     var savedAddress: [String] = []
     
     var tableView = UITableView()
@@ -36,6 +36,14 @@ class RecentsViewController: UIViewController {
         return lbl
     }()
     
+    let clearButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 10, y: 8, width: 50, height: 50))
+        button.tintColor = .darkGray
+        button.setTitle("Clear", for: .normal)
+        button.addTarget(self, action: #selector(clearButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -44,7 +52,9 @@ class RecentsViewController: UIViewController {
         renderRecents()
         
         headerView.addSubview(titleLabel)
-        self.tableView.tableHeaderView = headerView
+        headerView.addSubview(clearButton)
+        tableView.tableHeaderView = headerView
+        tableView.allowsSelection = false
     }
     
     // MARK: - Helpers
@@ -56,7 +66,7 @@ class RecentsViewController: UIViewController {
             let name = r.name
             let address = r.address
             
-            savedNames.append(name)
+            savedNames?.append(name)
             savedAddress.append(address)
             print("DEBUG: place name: \(name)")
             print("DEBUG: place address: \(address)")
@@ -74,6 +84,21 @@ class RecentsViewController: UIViewController {
         tableView.register(RecentsCell.self, forCellReuseIdentifier: cellId)
     }
     
+    // MARK: - Selectors
+    
+    @objc func clearButtonPressed() {
+        // Delete recents data from Realm
+        realm.beginWrite()
+        realm.delete(realm.objects(Recents.self))
+        try! realm.commitWrite()
+        DispatchQueue.main.async {
+            // Set savedNames array to nil to clear the rows
+            self.savedNames = nil
+            self.tableView.reloadData()
+            print("DEBUG: clear")
+        }
+    }
+    
 }
 
 // MARK: - UITableViewDelegate + UITableViewDataSource
@@ -81,12 +106,12 @@ class RecentsViewController: UIViewController {
 extension RecentsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedNames.count
+        return savedNames?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RecentsCell
-        cell.nameLabel.text = savedNames[indexPath.row]
+        cell.nameLabel.text = savedNames?[indexPath.row]
         cell.addressLabel.text = "● " + savedAddress[indexPath.row]
         return cell
     }

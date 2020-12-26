@@ -223,13 +223,6 @@ class DetailsViewController: UIViewController {
         try! realm.commitWrite()
     }
     
-    // Delete recents data from Realm
-    func deleteRecents() {
-        realm.beginWrite()
-        realm.delete(realm.objects(Recents.self))
-        try! realm.commitWrite()
-    }
-    
     func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String, rating: String) {
         self.passedPlacesNames = placeName
         self.passedPlacesImages = placeImage
