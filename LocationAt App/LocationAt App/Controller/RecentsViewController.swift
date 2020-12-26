@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RecentsViewController: UIViewController {
     
     // MARK: - properties
     
+    // Create instance of Realm
+    let realm = try! Realm()
+    
+    var savedNames: [String] = []
+    var savedAddress: [String] = []
+
     var tableView = UITableView()
     let cellId = "cell"
     
@@ -19,9 +26,24 @@ class RecentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableView()
+        renderRecents()
     }
     
     // MARK: - Helpers
+    
+    // Render recents data from Realm
+    func renderRecents() {
+        let recents = realm.objects(Recents.self)
+        for r in recents {
+            let name = r.name
+            let address = r.address
+            
+            savedNames.append(name)
+            savedAddress.append(address)
+            print("DEBUG: place name: \(name)")
+            print("DEBUG: place address: \(address)")
+        }
+    }
     
     func setTableView() {
         tableView.frame = self.view.frame
@@ -41,12 +63,12 @@ class RecentsViewController: UIViewController {
 extension RecentsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return savedNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RecentsCell
-        cell.nameLabel.text = "test test"
+        cell.nameLabel.text = savedNames[indexPath.row]
         return cell
     }
     
