@@ -28,6 +28,7 @@
 		A597BF76259674F800BF6643 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF75259674F800BF6643 /* RecentsViewController.swift */; };
 		A597BF7A2597A2BE00BF6643 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A597BF792597A2BE00BF6643 /* Realm */; };
 		A597BF7C2597A2BE00BF6643 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A597BF7B2597A2BE00BF6643 /* RealmSwift */; };
+		A597BF7F2597A4EF00BF6643 /* Recents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF7E2597A4EF00BF6643 /* Recents.swift */; };
 		A5B23CF42593DFCB003F026F /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B23CF32593DFCB003F026F /* SegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		A57FB9792592201C005817FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A597BF6F2596742B00BF6643 /* RecentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCell.swift; sourceTree = "<group>"; };
 		A597BF75259674F800BF6643 /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
+		A597BF7E2597A4EF00BF6643 /* Recents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recents.swift; sourceTree = "<group>"; };
 		A5B23CF32593DFCB003F026F /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.debug.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +144,7 @@
 				A55355D1258E193E0071CE72 /* Places.swift */,
 				A57FB97425920F82005817FE /* Weather.swift */,
 				A55355D4258E19ED0071CE72 /* NetworkService.swift */,
+				A597BF7E2597A4EF00BF6643 /* Recents.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				A597BF76259674F800BF6643 /* RecentsViewController.swift in Sources */,
 				A57FB97525920F82005817FE /* Weather.swift in Sources */,
 				A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */,
+				A597BF7F2597A4EF00BF6643 /* Recents.swift in Sources */,
 				A55355C7258D21B20071CE72 /* PlacesCell.swift in Sources */,
 				A57FB97A2592201C005817FE /* Constants.swift in Sources */,
 				A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */,
