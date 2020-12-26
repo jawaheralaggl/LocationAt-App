@@ -8,10 +8,14 @@
 import UIKit
 import SDWebImage
 import QuartzCore
+import RealmSwift
 
 class DetailsViewController: UIViewController {
     
     // MARK: - properties
+    
+    // Create instance of Realm
+    let realm = try! Realm()
     
     var passedPlacesNames: String!
     var passedIsClosed: Bool!
@@ -144,6 +148,8 @@ class DetailsViewController: UIViewController {
         
         placeImage.sd_setImage(with: passedPlacesImages, completed: nil)
         weatherImage.sd_setImage(with: passedWeatherImages, completed: nil)
+        
+        saveRecents()
     }
     
     func configureUI(){
@@ -203,6 +209,26 @@ class DetailsViewController: UIViewController {
     }
     
     // MARK: - Helpers
+    
+    // Save recents data to Realm
+    func saveRecents() {
+        let recents = Recents()
+        recents.name = passedPlacesNames
+        recents.address = passedAdress
+        print("DEBUG: name of place: \(recents.name)")
+        print("DEBUG: address of place: \(recents.address)")
+
+        realm.beginWrite()
+        realm.add(recents)
+        try! realm.commitWrite()
+    }
+    
+    // Delete recents data from Realm
+    func deleteRecents() {
+        realm.beginWrite()
+        realm.delete(realm.objects(Recents.self))
+        try! realm.commitWrite()
+    }
     
     func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String, rating: String) {
         self.passedPlacesNames = placeName
