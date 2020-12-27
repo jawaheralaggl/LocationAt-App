@@ -24,4 +24,5 @@ class Constants {
     
     let mainColor = UIColor(named: "Deep Sapphire")
     let clearColor = UIColor(white: 0.3, alpha: 0.3)
+    let viewsColor = UIColor(named: "Views Color")
 }

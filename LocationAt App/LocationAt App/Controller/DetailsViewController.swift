@@ -39,6 +39,64 @@ class DetailsViewController: UIViewController {
         }
     }
     
+    let disView: UIView = {
+        let view = UIView(frame: CGRect(x: 8, y: 6, width: 190, height: 80))
+        view.backgroundColor = Constants.shared.viewsColor
+        view.layer.cornerRadius = 12
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let weatherView: UIView = {
+        let view = UIView(frame: CGRect(x: 212, y: 6, width: 190, height: 80))
+        view.backgroundColor = Constants.shared.viewsColor
+        view.layer.cornerRadius = 12
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let disTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: Constants.shared.mainFont, size: 15)
+        label.textColor = Constants.shared.mainColor
+        label.text = "Distance"
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let distanceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: Constants.shared.mainFont, size: 25)
+        label.textColor = Constants.shared.mainColor
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let weatherImage: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    let weatherTemp: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: Constants.shared.mainFont, size: 25)
+        label.textColor = Constants.shared.mainColor
+        return label
+    }()
+    
+    let weatherText: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: Constants.shared.mainFont, size: 19)
+        label.textColor = Constants.shared.mainColor
+        return label
+    }()
+    
     let placeImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -73,31 +131,6 @@ class DetailsViewController: UIViewController {
         return label
     }()
     
-    let weatherImage: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 12
-        iv.clipsToBounds = true
-        return iv
-    }()
-    
-    let weatherTemp: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: Constants.shared.mainFont, size: 30)
-        label.textColor = .black
-        return label
-    }()
-    
-    let weatherText: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: Constants.shared.mainFont, size: 20)
-        label.textColor = .black
-        return label
-    }()
-    
     let destinationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +147,7 @@ class DetailsViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "share"), for: .normal)
-        button.backgroundColor = Constants.shared.clearColor
+        button.backgroundColor = Constants.shared.viewsColor
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         return button
@@ -153,9 +186,43 @@ class DetailsViewController: UIViewController {
     }
     
     func configureUI(){
+        
+        view.addSubview(weatherView)
+        
+        weatherView.addSubview(weatherImage)
+        weatherImage.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        weatherImage.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        weatherImage.topAnchor.constraint(equalTo: weatherView.topAnchor, constant: 10).isActive = true
+        weatherImage.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor).isActive = true
+        
+        weatherView.addSubview(weatherTemp)
+        weatherTemp.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        weatherTemp.topAnchor.constraint(equalTo: weatherView.topAnchor, constant: 8).isActive = true
+        weatherTemp.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 8).isActive = true
+        weatherTemp.trailingAnchor.constraint(equalTo: weatherView.trailingAnchor, constant: -8).isActive = true
+        
+        weatherView.addSubview(weatherText)
+        weatherText.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        weatherText.topAnchor.constraint(equalTo: weatherTemp.bottomAnchor, constant: 5).isActive = true
+        weatherText.trailingAnchor.constraint(equalTo: weatherView.trailingAnchor, constant: -8).isActive = true
+        
+        view.addSubview(disView)
+        
+        disView.addSubview(disTitleLabel)
+        disTitleLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        disTitleLabel.topAnchor.constraint(equalTo: disView.topAnchor, constant: 8).isActive = true
+        disTitleLabel.leadingAnchor.constraint(equalTo: disView.leadingAnchor, constant: 8).isActive = true
+        disTitleLabel.trailingAnchor.constraint(equalTo: disView.trailingAnchor, constant: -8).isActive = true
+        
+        disView.addSubview(distanceLabel)
+        distanceLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        distanceLabel.topAnchor.constraint(equalTo: disTitleLabel.bottomAnchor, constant: 8).isActive = true
+        distanceLabel.leadingAnchor.constraint(equalTo: disView.leadingAnchor, constant: 8).isActive = true
+        distanceLabel.trailingAnchor.constraint(equalTo: disView.trailingAnchor, constant: -8).isActive = true
+        
         view.addSubview(placeImage)
-        placeImage.heightAnchor.constraint(equalToConstant: 500).isActive = true
-        placeImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+        placeImage.heightAnchor.constraint(equalToConstant: 640).isActive = true
+        placeImage.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 10).isActive = true
         placeImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         placeImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         
@@ -169,24 +236,6 @@ class DetailsViewController: UIViewController {
         isClosedLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
         isClosedLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
         isClosedLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        view.addSubview(weatherImage)
-        weatherImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        weatherImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        weatherImage.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 50).isActive = true
-        weatherImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60).isActive = true
-        
-        view.addSubview(weatherTemp)
-        weatherTemp.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        weatherTemp.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 65).isActive = true
-        weatherTemp.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 8).isActive = true
-        weatherTemp.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
-        
-        view.addSubview(weatherText)
-        weatherText.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        weatherText.topAnchor.constraint(equalTo: weatherTemp.bottomAnchor, constant: 10).isActive = true
-        weatherText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 170).isActive = true
-        weatherText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60).isActive = true
         
         view.addSubview(destinationButton)
         destinationButton.widthAnchor.constraint(equalToConstant: 280).isActive = true
@@ -217,7 +266,7 @@ class DetailsViewController: UIViewController {
         recents.address = passedAdress
         print("DEBUG: name of place: \(recents.name)")
         print("DEBUG: address of place: \(recents.address)")
-
+        
         realm.beginWrite()
         realm.add(recents)
         try! realm.commitWrite()
