@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController {
     var passedWeatherImages: URL!
     var passedAdress: String!
     var passedRating: String!
+    var passedDistance: String!
     
     // Change the properties accordingly
     var isClosed: Bool = false {
@@ -178,6 +179,7 @@ class DetailsViewController: UIViewController {
         
         weatherTemp.text = passedWeatherTemps
         weatherText.text = passedWeatherText
+        distanceLabel.text = passedDistance
         
         placeImage.sd_setImage(with: passedPlacesImages, completed: nil)
         weatherImage.sd_setImage(with: passedWeatherImages, completed: nil)
@@ -272,7 +274,7 @@ class DetailsViewController: UIViewController {
         try! realm.commitWrite()
     }
     
-    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String, rating: String) {
+    func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String, rating: String, distance: String) {
         self.passedPlacesNames = placeName
         self.passedPlacesImages = placeImage
         self.passedIsClosed = isClosed
@@ -281,6 +283,7 @@ class DetailsViewController: UIViewController {
         self.passedWeatherImages = weatherImages
         self.passedWeatherTemps = weatherTemp
         self.passedWeatherText = weatherText
+        self.passedDistance = distance
         
         self.passedAdress = address
     }

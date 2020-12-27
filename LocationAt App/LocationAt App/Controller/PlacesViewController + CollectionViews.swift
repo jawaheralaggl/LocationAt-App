@@ -55,7 +55,8 @@ extension PlacesViewController: UICollectionViewDataSource {
                                 weatherTemp: "\(weather[indexPath.row].temp_f ?? 0.0) °F",
                                 weatherText: weather[indexPath.row].text ?? "",
                                 address: places[indexPath.row].address ?? "",
-                                rating: "\(places[indexPath.row].rating ?? 0.0)")
+                                rating: "\(places[indexPath.row].rating ?? 0.0)",
+                                distance: String(format: "%.02fkm", places[indexPath.row].distance! / 1000.0))
             present(controller, animated: true)
         }
     
