@@ -74,6 +74,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         configureUI()
         cunfigureSegmentedCtrl()
         
