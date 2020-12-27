@@ -12,7 +12,7 @@ import RealmSwift
 
 class DetailsViewController: UIViewController {
     
-    // MARK: - properties
+    // MARK: - Properties
     
     // Create instance of Realm
     let realm = try! Realm()
@@ -62,7 +62,6 @@ class DetailsViewController: UIViewController {
         label.font = UIFont(name: Constants.shared.mainFont, size: 15)
         label.textColor = Constants.shared.mainColor
         label.text = "Distance"
-        label.textAlignment = .left
         return label
     }()
     
@@ -71,7 +70,6 @@ class DetailsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: Constants.shared.mainFont, size: 25)
         label.textColor = Constants.shared.mainColor
-        label.textAlignment = .left
         return label
     }()
     
@@ -93,7 +91,7 @@ class DetailsViewController: UIViewController {
     let weatherText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: Constants.shared.mainFont, size: 19)
+        label.font = UIFont(name: Constants.shared.mainFont, size: 16)
         label.textColor = Constants.shared.mainColor
         return label
     }()
@@ -111,7 +109,6 @@ class DetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: Constants.shared.mainFont, size: 18)
-        label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textColor = .white
@@ -148,7 +145,7 @@ class DetailsViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "share"), for: .normal)
-        button.backgroundColor = Constants.shared.viewsColor
+        button.backgroundColor = Constants.shared.buttonsColor
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(handleShareTapped), for: .touchUpInside)
         return button
@@ -187,78 +184,6 @@ class DetailsViewController: UIViewController {
         saveRecents()
     }
     
-    func configureUI(){
-        
-        view.addSubview(weatherView)
-        
-        weatherView.addSubview(weatherImage)
-        weatherImage.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        weatherImage.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        weatherImage.topAnchor.constraint(equalTo: weatherView.topAnchor, constant: 10).isActive = true
-        weatherImage.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor).isActive = true
-        
-        weatherView.addSubview(weatherTemp)
-        weatherTemp.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        weatherTemp.topAnchor.constraint(equalTo: weatherView.topAnchor, constant: 8).isActive = true
-        weatherTemp.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 8).isActive = true
-        weatherTemp.trailingAnchor.constraint(equalTo: weatherView.trailingAnchor, constant: -8).isActive = true
-        
-        weatherView.addSubview(weatherText)
-        weatherText.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        weatherText.topAnchor.constraint(equalTo: weatherTemp.bottomAnchor, constant: 5).isActive = true
-        weatherText.trailingAnchor.constraint(equalTo: weatherView.trailingAnchor, constant: -8).isActive = true
-        
-        view.addSubview(disView)
-        
-        disView.addSubview(disTitleLabel)
-        disTitleLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        disTitleLabel.topAnchor.constraint(equalTo: disView.topAnchor, constant: 8).isActive = true
-        disTitleLabel.leadingAnchor.constraint(equalTo: disView.leadingAnchor, constant: 8).isActive = true
-        disTitleLabel.trailingAnchor.constraint(equalTo: disView.trailingAnchor, constant: -8).isActive = true
-        
-        disView.addSubview(distanceLabel)
-        distanceLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        distanceLabel.topAnchor.constraint(equalTo: disTitleLabel.bottomAnchor, constant: 8).isActive = true
-        distanceLabel.leadingAnchor.constraint(equalTo: disView.leadingAnchor, constant: 8).isActive = true
-        distanceLabel.trailingAnchor.constraint(equalTo: disView.trailingAnchor, constant: -8).isActive = true
-        
-        view.addSubview(placeImage)
-        placeImage.heightAnchor.constraint(equalToConstant: 640).isActive = true
-        placeImage.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 10).isActive = true
-        placeImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        placeImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        
-        placeImage.addSubview(nameLabel)
-        nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
-        
-        placeImage.addSubview(isClosedLabel)
-        isClosedLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        isClosedLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
-        isClosedLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
-        isClosedLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
-        isClosedLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        
-        view.addSubview(destinationButton)
-        destinationButton.widthAnchor.constraint(equalToConstant: 280).isActive = true
-        destinationButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        destinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
-        destinationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        
-        view.addSubview(shareButton)
-        shareButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        shareButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
-        shareButton.trailingAnchor.constraint(equalTo: destinationButton.leadingAnchor, constant: -20).isActive = true
-        
-        placeImage.addSubview(ratingLabel)
-        ratingLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        ratingLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
-        ratingLabel.trailingAnchor.constraint(equalTo: placeImage.trailingAnchor, constant: -8).isActive = true
-        ratingLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
     // MARK: - Helpers
     
     // Save recents data to Realm
@@ -266,8 +191,6 @@ class DetailsViewController: UIViewController {
         let recents = Recents()
         recents.name = passedPlacesNames
         recents.address = passedAdress
-        print("DEBUG: name of place: \(recents.name)")
-        print("DEBUG: address of place: \(recents.address)")
         
         realm.beginWrite()
         realm.add(recents)
@@ -324,6 +247,80 @@ class DetailsViewController: UIViewController {
             }
             
         }
+    }
+    
+    // MARK: - Layout
+    
+    func configureUI(){
+        view.addSubview(weatherView)
+        
+        weatherView.addSubview(weatherImage)
+        weatherImage.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        weatherImage.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        weatherImage.topAnchor.constraint(equalTo: weatherView.topAnchor, constant: 10).isActive = true
+        weatherImage.leadingAnchor.constraint(equalTo: weatherView.leadingAnchor).isActive = true
+        
+        weatherView.addSubview(weatherTemp)
+        weatherTemp.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        weatherTemp.topAnchor.constraint(equalTo: weatherView.topAnchor, constant: 8).isActive = true
+        weatherTemp.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 8).isActive = true
+        weatherTemp.trailingAnchor.constraint(equalTo: weatherView.trailingAnchor, constant: -8).isActive = true
+        
+        weatherView.addSubview(weatherText)
+        weatherText.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        weatherText.topAnchor.constraint(equalTo: weatherTemp.bottomAnchor, constant: 5).isActive = true
+        weatherText.leadingAnchor.constraint(equalTo: weatherImage.trailingAnchor, constant: 8).isActive = true
+        weatherText.trailingAnchor.constraint(equalTo: weatherView.trailingAnchor, constant: -8).isActive = true
+        
+        view.addSubview(disView)
+        
+        disView.addSubview(disTitleLabel)
+        disTitleLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        disTitleLabel.topAnchor.constraint(equalTo: disView.topAnchor, constant: 8).isActive = true
+        disTitleLabel.leadingAnchor.constraint(equalTo: disView.leadingAnchor, constant: 8).isActive = true
+        disTitleLabel.trailingAnchor.constraint(equalTo: disView.trailingAnchor, constant: -8).isActive = true
+        
+        disView.addSubview(distanceLabel)
+        distanceLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        distanceLabel.topAnchor.constraint(equalTo: disTitleLabel.bottomAnchor, constant: 8).isActive = true
+        distanceLabel.leadingAnchor.constraint(equalTo: disView.leadingAnchor, constant: 8).isActive = true
+        distanceLabel.trailingAnchor.constraint(equalTo: disView.trailingAnchor, constant: -8).isActive = true
+        
+        view.addSubview(placeImage)
+        placeImage.heightAnchor.constraint(equalToConstant: 640).isActive = true
+        placeImage.topAnchor.constraint(equalTo: weatherView.bottomAnchor, constant: 10).isActive = true
+        placeImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        placeImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        
+        placeImage.addSubview(nameLabel)
+        nameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
+        
+        placeImage.addSubview(isClosedLabel)
+        isClosedLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        isClosedLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
+        isClosedLabel.leadingAnchor.constraint(equalTo: placeImage.leadingAnchor, constant: 8).isActive = true
+        isClosedLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
+        isClosedLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        view.addSubview(destinationButton)
+        destinationButton.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        destinationButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        destinationButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        destinationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        
+        view.addSubview(shareButton)
+        shareButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        shareButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        shareButton.trailingAnchor.constraint(equalTo: destinationButton.leadingAnchor, constant: -20).isActive = true
+        
+        placeImage.addSubview(ratingLabel)
+        ratingLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        ratingLabel.bottomAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: -16).isActive = true
+        ratingLabel.trailingAnchor.constraint(equalTo: placeImage.trailingAnchor, constant: -8).isActive = true
+        ratingLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
 }

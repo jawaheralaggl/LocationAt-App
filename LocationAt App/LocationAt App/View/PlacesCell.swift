@@ -26,7 +26,7 @@ class PlacesCell: UICollectionViewCell {
         label.font = UIFont(name: Constants.shared.mainFont, size: 17)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.textColor = .black
+        label.textColor = .darkGray
         return label
     }()
     
@@ -34,7 +34,6 @@ class PlacesCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: Constants.shared.mainFont, size: 15)
-        label.textColor = .black
         return label
     }()
     
@@ -72,7 +71,7 @@ class PlacesCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 25
         // Set shadow to the cell
         contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.23
+        contentView.layer.shadowOpacity = 0.25
         contentView.layer.shadowRadius = 4
         
         contentView.addSubview(placeImage)

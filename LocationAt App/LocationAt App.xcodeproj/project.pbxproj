@@ -117,9 +117,10 @@
 				A55355C0258D1DEF0071CE72 /* Model */,
 				A55355C1258D1DFE0071CE72 /* View */,
 				A55355BF258D1DE20071CE72 /* Controller */,
+				A597BF812598F5F000BF6643 /* Utils */,
 				A55355C3258D1E260071CE72 /* Storyboard */,
-				A5535588258CD4C60071CE72 /* Assets.xcassets */,
 				A553558D258CD4C60071CE72 /* Info.plist */,
+				A5535588258CD4C60071CE72 /* Assets.xcassets */,
 			);
 			path = "LocationAt App";
 			sourceTree = "<group>";
@@ -140,7 +141,6 @@
 		A55355C0258D1DEF0071CE72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A57FB9792592201C005817FE /* Constants.swift */,
 				A55355D1258E193E0071CE72 /* Places.swift */,
 				A57FB97425920F82005817FE /* Weather.swift */,
 				A55355D4258E19ED0071CE72 /* NetworkService.swift */,
@@ -167,6 +167,14 @@
 				A553558A258CD4C60071CE72 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		A597BF812598F5F000BF6643 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A57FB9792592201C005817FE /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
