@@ -46,9 +46,7 @@ class NetworkService {
                 
                 // Businesses(Places)
                 guard let businesses = response.value(forKey: "businesses") as? [NSDictionary] else { return }
-                
-                print("\(businesses)")
-                
+                                
                 // Accessing each business(places)
                 for business in businesses {
                     var place = Places()
@@ -102,13 +100,10 @@ class NetworkService {
                 
                 // Main dictionary
                 guard let response = json as? NSDictionary else { return }
-                print(response)
                 
                 // Weather dictionaries
                 guard let currentWeather = response["current"] as? NSDictionary else { return }
                 guard let weatherCondition = currentWeather["condition"] as? NSDictionary else { return }
-                
-                print("\(currentWeather)")
                 
                 // Accessing weather of each places
                 for _ in currentWeather {

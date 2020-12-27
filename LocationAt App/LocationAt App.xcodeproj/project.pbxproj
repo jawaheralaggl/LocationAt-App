@@ -12,6 +12,9 @@
 		A51BDE9C258FB220003099A8 /* PlacesViewController + Searching.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */; };
 		A51BDE9F258FB27D003099A8 /* PlacesViewController + CollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */; };
 		A51BDEC0259133BB003099A8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BDEBF259133BB003099A8 /* DetailsViewController.swift */; };
+		A544D52925992375008CDBF4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A544D52825992375008CDBF4 /* Lottie */; };
+		A544D52C259923A2008CDBF4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A544D52B259923A2008CDBF4 /* SplashViewController.swift */; };
+		A544D5312599244F008CDBF4 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = A544D5302599244F008CDBF4 /* splash.json */; };
 		A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553557F258CD4C50071CE72 /* AppDelegate.swift */; };
 		A5535582258CD4C50071CE72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535581258CD4C50071CE72 /* SceneDelegate.swift */; };
 		A5535584258CD4C50071CE72 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5535583258CD4C50071CE72 /* PlacesViewController.swift */; };
@@ -39,6 +42,8 @@
 		A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + Searching.swift"; sourceTree = "<group>"; };
 		A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + CollectionViews.swift"; sourceTree = "<group>"; };
 		A51BDEBF259133BB003099A8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		A544D52B259923A2008CDBF4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		A544D5302599244F008CDBF4 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		A553557C258CD4C50071CE72 /* LocationAt App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LocationAt App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A553557F258CD4C50071CE72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5535581258CD4C50071CE72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 				A597BF7C2597A2BE00BF6643 /* RealmSwift in Frameworks */,
 				A597BF7A2597A2BE00BF6643 /* Realm in Frameworks */,
 				27B9EBFB42D443E104F72863 /* Pods_LocationAt_App.framework in Frameworks */,
+				A544D52925992375008CDBF4 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +95,14 @@
 				11872E13D3D88C75573E2439 /* Pods-LocationAt App.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A544D52E259923C6008CDBF4 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A544D52B259923A2008CDBF4 /* SplashViewController.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		A5535573258CD4C50071CE72 = {
@@ -117,9 +131,10 @@
 				A55355C0258D1DEF0071CE72 /* Model */,
 				A55355C1258D1DFE0071CE72 /* View */,
 				A55355BF258D1DE20071CE72 /* Controller */,
+				A597BF812598F5F000BF6643 /* Utils */,
 				A55355C3258D1E260071CE72 /* Storyboard */,
-				A5535588258CD4C60071CE72 /* Assets.xcassets */,
 				A553558D258CD4C60071CE72 /* Info.plist */,
+				A5535588258CD4C60071CE72 /* Assets.xcassets */,
 			);
 			path = "LocationAt App";
 			sourceTree = "<group>";
@@ -127,6 +142,7 @@
 		A55355BF258D1DE20071CE72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A544D52E259923C6008CDBF4 /* SplashScreen */,
 				A5535583258CD4C50071CE72 /* PlacesViewController.swift */,
 				A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */,
 				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
@@ -140,7 +156,6 @@
 		A55355C0258D1DEF0071CE72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A57FB9792592201C005817FE /* Constants.swift */,
 				A55355D1258E193E0071CE72 /* Places.swift */,
 				A57FB97425920F82005817FE /* Weather.swift */,
 				A55355D4258E19ED0071CE72 /* NetworkService.swift */,
@@ -169,6 +184,15 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		A597BF812598F5F000BF6643 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A57FB9792592201C005817FE /* Constants.swift */,
+				A544D5302599244F008CDBF4 /* splash.json */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +214,7 @@
 			packageProductDependencies = (
 				A597BF792597A2BE00BF6643 /* Realm */,
 				A597BF7B2597A2BE00BF6643 /* RealmSwift */,
+				A544D52825992375008CDBF4 /* Lottie */,
 			);
 			productName = "LocationAt App";
 			productReference = A553557C258CD4C50071CE72 /* LocationAt App.app */;
@@ -220,6 +245,7 @@
 			mainGroup = A5535573258CD4C50071CE72;
 			packageReferences = (
 				A597BF782597A2BE00BF6643 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				A544D52725992375008CDBF4 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = A553557D258CD4C50071CE72 /* Products */;
 			projectDirPath = "";
@@ -237,6 +263,7 @@
 			files = (
 				A553558C258CD4C60071CE72 /* LaunchScreen.storyboard in Resources */,
 				A5535589258CD4C60071CE72 /* Assets.xcassets in Resources */,
+				A544D5312599244F008CDBF4 /* splash.json in Resources */,
 				A5535587258CD4C50071CE72 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +320,7 @@
 				A51BDE9F258FB27D003099A8 /* PlacesViewController + CollectionViews.swift in Sources */,
 				A5535584258CD4C50071CE72 /* PlacesViewController.swift in Sources */,
 				A5B23CF42593DFCB003F026F /* SegmentedControl.swift in Sources */,
+				A544D52C259923A2008CDBF4 /* SplashViewController.swift in Sources */,
 				A5535580258CD4C50071CE72 /* AppDelegate.swift in Sources */,
 				A55355D2258E193E0071CE72 /* Places.swift in Sources */,
 				A55355D5258E19ED0071CE72 /* NetworkService.swift in Sources */,
@@ -512,6 +540,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A544D52725992375008CDBF4 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.9;
+			};
+		};
 		A597BF782597A2BE00BF6643 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -523,6 +559,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A544D52825992375008CDBF4 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A544D52725992375008CDBF4 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		A597BF792597A2BE00BF6643 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A597BF782597A2BE00BF6643 /* XCRemoteSwiftPackageReference "realm-cocoa" */;

@@ -11,7 +11,7 @@ import CoreLocation
 
 class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
-    // MARK: - properties
+    // MARK: - Properties
     static let shared = PlacesViewController()
     
     // Uses CLLocationManager to ask the user for their location
@@ -21,7 +21,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     var weather: [Weather] = []
     var categories: String = ""
     
-    var mainSearchBar = SearchBar()
+    var mainSearchBar = SearchBar() 
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -38,7 +38,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .darkGray
-        button.backgroundColor =  UIColor(white: 0, alpha: 0.1)
+        button.backgroundColor =  Constants.shared.buttonsColor
         button.setImage(UIImage(named: "recent"), for: .normal)
         button.addTarget(self, action: #selector(recentsButtonPressed), for: .touchUpInside)
         return button
@@ -48,7 +48,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .darkGray
-        button.backgroundColor =  UIColor(white: 0, alpha: 0.1)
+        button.backgroundColor =  Constants.shared.buttonsColor
         button.setImage(UIImage(named: "search"), for: .normal)
         button.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         return button
@@ -74,10 +74,10 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         configureUI()
         cunfigureSegmentedCtrl()
         
-        mainSearchBar.alpha = 0
         // Dismiss Keyboard when touch the view
         let tap = UITapGestureRecognizer(target: self.view ,action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
@@ -85,9 +85,11 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         
         // Set delegates to this VC
         locationManager.delegate = self
-        mainSearchBar.delegate = self
         placesCollectionView.delegate = self
         placesCollectionView.dataSource = self
+        mainSearchBar.delegate = self
+        
+        mainSearchBar.alpha = 0
         
         fetchPlacesAndWeatherAroundUser()
     }
@@ -164,7 +166,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: - layout
+    // MARK: - Layout
     
     func cunfigureSegmentedCtrl() {
         segmentedControl.items = ["Restaurants", "Coffee", "Parks", "Hotels"]
@@ -173,7 +175,6 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func configureUI() {
-        
         view.addSubview(headerLabel)
         headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
         headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true

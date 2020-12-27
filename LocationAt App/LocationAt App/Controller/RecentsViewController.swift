@@ -10,7 +10,7 @@ import RealmSwift
 
 class RecentsViewController: UIViewController {
     
-    // MARK: - properties
+    // MARK: - Properties
     
     // Create instance of Realm
     let realm = try! Realm()
@@ -28,18 +28,19 @@ class RecentsViewController: UIViewController {
     }()
     
     let titleLabel: UILabel = {
-        let lbl = UILabel(frame: CGRect(x: 150, y: 8, width: 100, height: 50))
-        lbl.textAlignment = .center
-        lbl.text = "Recents"
-        lbl.font = UIFont(name: Constants.shared.mainFont, size: 25)
-        lbl.textColor = .white
-        return lbl
+        let label = UILabel(frame: CGRect(x: 150, y: 8, width: 100, height: 50))
+        label.textAlignment = .center
+        label.text = "Recents"
+        label.font = UIFont(name: Constants.shared.mainFont, size: 25)
+        label.textColor = .white
+        return label
     }()
     
     let clearButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 10, y: 8, width: 50, height: 50))
         button.tintColor = .darkGray
         button.setTitle("Clear", for: .normal)
+        button.titleLabel?.font = UIFont(name: Constants.shared.mainFont, size: 15)
         button.addTarget(self, action: #selector(clearButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -68,8 +69,6 @@ class RecentsViewController: UIViewController {
             
             savedNames?.append(name)
             savedAddress.append(address)
-            print("DEBUG: place name: \(name)")
-            print("DEBUG: place address: \(address)")
         }
     }
     
@@ -95,7 +94,6 @@ class RecentsViewController: UIViewController {
             // Set savedNames array to nil to clear the rows
             self.savedNames = nil
             self.tableView.reloadData()
-            print("DEBUG: clear")
         }
     }
     

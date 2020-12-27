@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreLocation
 
 // MARK: - UISearchBarDelegate
 
@@ -21,7 +20,6 @@ extension PlacesViewController: UISearchBarDelegate {
             
             self.fetchPlacesAndWeatherBySearch(lat: coordinate.latitude, long: coordinate.longitude)
             DispatchQueue.main.async {
-                print(address, "coordinate:", coordinate)
                 self.placesCollectionView.reloadData()
             }
         }
