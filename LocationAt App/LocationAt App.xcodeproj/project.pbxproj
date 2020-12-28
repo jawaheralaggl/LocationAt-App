@@ -27,13 +27,25 @@
 		A55355D5258E19ED0071CE72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D4258E19ED0071CE72 /* NetworkService.swift */; };
 		A57FB97525920F82005817FE /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB97425920F82005817FE /* Weather.swift */; };
 		A57FB97A2592201C005817FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB9792592201C005817FE /* Constants.swift */; };
+		A58D88A625993BEA00231EDE /* TestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D88A525993BEA00231EDE /* TestNetworkService.swift */; };
 		A597BF702596742B00BF6643 /* RecentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF6F2596742B00BF6643 /* RecentsCell.swift */; };
 		A597BF76259674F800BF6643 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF75259674F800BF6643 /* RecentsViewController.swift */; };
 		A597BF7A2597A2BE00BF6643 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A597BF792597A2BE00BF6643 /* Realm */; };
 		A597BF7C2597A2BE00BF6643 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A597BF7B2597A2BE00BF6643 /* RealmSwift */; };
 		A597BF7F2597A4EF00BF6643 /* Recents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF7E2597A4EF00BF6643 /* Recents.swift */; };
 		A5B23CF42593DFCB003F026F /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B23CF32593DFCB003F026F /* SegmentedControl.swift */; };
+		A5B9AD88259A125800496F60 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B9AD87259A125800496F60 /* TestConstants.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A58D88A825993BEA00231EDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5535574258CD4C50071CE72 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A553557B258CD4C50071CE72;
+			remoteInfo = "LocationAt App";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		11872E13D3D88C75573E2439 /* Pods-LocationAt App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.release.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.release.xcconfig"; sourceTree = "<group>"; };
@@ -58,10 +70,14 @@
 		A55355D4258E19ED0071CE72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A57FB97425920F82005817FE /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A57FB9792592201C005817FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A58D88A325993BEA00231EDE /* LocationAt AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LocationAt AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58D88A525993BEA00231EDE /* TestNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNetworkService.swift; sourceTree = "<group>"; };
+		A58D88A725993BEA00231EDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A597BF6F2596742B00BF6643 /* RecentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsCell.swift; sourceTree = "<group>"; };
 		A597BF75259674F800BF6643 /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		A597BF7E2597A4EF00BF6643 /* Recents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recents.swift; sourceTree = "<group>"; };
 		A5B23CF32593DFCB003F026F /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		A5B9AD87259A125800496F60 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.debug.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +90,13 @@
 				A597BF7A2597A2BE00BF6643 /* Realm in Frameworks */,
 				27B9EBFB42D443E104F72863 /* Pods_LocationAt_App.framework in Frameworks */,
 				A544D52925992375008CDBF4 /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A58D88A025993BEA00231EDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				A553557E258CD4C50071CE72 /* LocationAt App */,
+				A58D88A425993BEA00231EDE /* LocationAt AppTests */,
 				A553557D258CD4C50071CE72 /* Products */,
 				70529EA309D3A3020DCABA52 /* Pods */,
 				2945145D3AED68E8F312C8B9 /* Frameworks */,
@@ -119,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				A553557C258CD4C50071CE72 /* LocationAt App.app */,
+				A58D88A325993BEA00231EDE /* LocationAt AppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,6 +209,16 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		A58D88A425993BEA00231EDE /* LocationAt AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				A5B9AD87259A125800496F60 /* TestConstants.swift */,
+				A58D88A525993BEA00231EDE /* TestNetworkService.swift */,
+				A58D88A725993BEA00231EDE /* Info.plist */,
+			);
+			path = "LocationAt AppTests";
+			sourceTree = "<group>";
+		};
 		A597BF812598F5F000BF6643 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +255,24 @@
 			productReference = A553557C258CD4C50071CE72 /* LocationAt App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A58D88A225993BEA00231EDE /* LocationAt AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A58D88AC25993BEA00231EDE /* Build configuration list for PBXNativeTarget "LocationAt AppTests" */;
+			buildPhases = (
+				A58D889F25993BEA00231EDE /* Sources */,
+				A58D88A025993BEA00231EDE /* Frameworks */,
+				A58D88A125993BEA00231EDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A58D88A925993BEA00231EDE /* PBXTargetDependency */,
+			);
+			name = "LocationAt AppTests";
+			productName = "LocationAt AppTests";
+			productReference = A58D88A325993BEA00231EDE /* LocationAt AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -231,6 +284,10 @@
 				TargetAttributes = {
 					A553557B258CD4C50071CE72 = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					A58D88A225993BEA00231EDE = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = A553557B258CD4C50071CE72;
 					};
 				};
 			};
@@ -252,6 +309,7 @@
 			projectRoot = "";
 			targets = (
 				A553557B258CD4C50071CE72 /* LocationAt App */,
+				A58D88A225993BEA00231EDE /* LocationAt AppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,6 +323,13 @@
 				A5535589258CD4C60071CE72 /* Assets.xcassets in Resources */,
 				A544D5312599244F008CDBF4 /* splash.json in Resources */,
 				A5535587258CD4C50071CE72 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A58D88A125993BEA00231EDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +403,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A58D889F25993BEA00231EDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A58D88A625993BEA00231EDE /* TestNetworkService.swift in Sources */,
+				A5B9AD88259A125800496F60 /* TestConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A58D88A925993BEA00231EDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A553557B258CD4C50071CE72 /* LocationAt App */;
+			targetProxy = A58D88A825993BEA00231EDE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A5535585258CD4C50071CE72 /* Main.storyboard */ = {
@@ -516,6 +598,48 @@
 			};
 			name = Release;
 		};
+		A58D88AA25993BEA00231EDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6W4MA25Y33;
+				INFOPLIST_FILE = "LocationAt AppTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jawaLed.LocationAt-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationAt App.app/LocationAt App";
+			};
+			name = Debug;
+		};
+		A58D88AB25993BEA00231EDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6W4MA25Y33;
+				INFOPLIST_FILE = "LocationAt AppTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jawaLed.LocationAt-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationAt App.app/LocationAt App";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -533,6 +657,15 @@
 			buildConfigurations = (
 				A5535591258CD4C60071CE72 /* Debug */,
 				A5535592258CD4C60071CE72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A58D88AC25993BEA00231EDE /* Build configuration list for PBXNativeTarget "LocationAt AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A58D88AA25993BEA00231EDE /* Debug */,
+				A58D88AB25993BEA00231EDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
