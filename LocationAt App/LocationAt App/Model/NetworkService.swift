@@ -36,7 +36,13 @@ class NetworkService {
         
         // Initialize session and task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error { completionHandler(nil, error) }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                completionHandler(nil, error)
+                return
+            }
+            
             do{
                 // Read data as JSON
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
@@ -46,7 +52,7 @@ class NetworkService {
                 
                 // Businesses(Places)
                 guard let businesses = response.value(forKey: "businesses") as? [NSDictionary] else { return }
-                                
+                
                 // Accessing each business(places)
                 for business in businesses {
                     var place = Places()
@@ -93,7 +99,13 @@ class NetworkService {
         
         // Initialize session and task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error { completionHandler(nil, error) }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                completionHandler(nil, error)
+                return
+            }
+            
             do {
                 // Read data as JSON
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])

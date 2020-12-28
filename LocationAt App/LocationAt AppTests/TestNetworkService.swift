@@ -20,11 +20,12 @@ class TestNetworkService: XCTestCase {
         // 2. The asynchronous code
         let userLocation = placesService.getUserLocation(locationManager: placesService.locationManager)
         
-        networkService.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.lat, category: TestConstants.categories, limit: TestConstants.limit, sortBy: TestConstants.sortBy) { success, failure  in
-            XCTAssertTrue((success != nil))
+        networkService.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: TestConstants.categories, limit: TestConstants.limit, sortBy: TestConstants.sortBy) { result, error in
+            XCTAssertTrue((result != nil))
+            XCTAssertNotNil(result, "result is nil")
             
-            if failure != nil { // Handle failure
-                XCTFail("Fail")
+            if error != nil { // Handle error
+                XCTFail("Failed to fetch places from the server")
             }
             
             // Fulfill the expectation in the async callback
@@ -46,11 +47,12 @@ class TestNetworkService: XCTestCase {
         // 2. The asynchronous code
         let userLocation = placesService.getUserLocation(locationManager: placesService.locationManager)
         
-        networkService.fetchWeather(latitude: userLocation.lat, longitude: userLocation.lat, completionHandler: { success, failure  in
-            XCTAssertTrue((success != nil))
+        networkService.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long, completionHandler: { result, error in
+            XCTAssertTrue((result != nil))
+            XCTAssertNotNil(result, "result is nil")
             
-            if failure != nil { // Handle failure
-                XCTFail("Fail")
+            if error != nil { // Handle error
+                XCTFail("Failed to fetch weather from the server")
             }
             
             // Fulfill the expectation in the async callback
