@@ -25,6 +25,7 @@
 		A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355CC258D2A240071CE72 /* SearchBar.swift */; };
 		A55355D2258E193E0071CE72 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D1258E193E0071CE72 /* Places.swift */; };
 		A55355D5258E19ED0071CE72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55355D4258E19ED0071CE72 /* NetworkService.swift */; };
+		A55DDF58259A5FDC00270DE4 /* TestPlacesAndWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55DDF57259A5FDC00270DE4 /* TestPlacesAndWeather.swift */; };
 		A57FB97525920F82005817FE /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB97425920F82005817FE /* Weather.swift */; };
 		A57FB97A2592201C005817FE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57FB9792592201C005817FE /* Constants.swift */; };
 		A58D88A625993BEA00231EDE /* TestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D88A525993BEA00231EDE /* TestNetworkService.swift */; };
@@ -68,6 +69,7 @@
 		A55355CC258D2A240071CE72 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A55355D1258E193E0071CE72 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		A55355D4258E19ED0071CE72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		A55DDF57259A5FDC00270DE4 /* TestPlacesAndWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlacesAndWeather.swift; sourceTree = "<group>"; };
 		A57FB97425920F82005817FE /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A57FB9792592201C005817FE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A58D88A325993BEA00231EDE /* LocationAt AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LocationAt AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 			children = (
 				A5B9AD87259A125800496F60 /* TestConstants.swift */,
 				A58D88A525993BEA00231EDE /* TestNetworkService.swift */,
+				A55DDF57259A5FDC00270DE4 /* TestPlacesAndWeather.swift */,
 				A58D88A725993BEA00231EDE /* Info.plist */,
 			);
 			path = "LocationAt AppTests";
@@ -408,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58D88A625993BEA00231EDE /* TestNetworkService.swift in Sources */,
+				A55DDF58259A5FDC00270DE4 /* TestPlacesAndWeather.swift in Sources */,
 				A5B9AD88259A125800496F60 /* TestConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
