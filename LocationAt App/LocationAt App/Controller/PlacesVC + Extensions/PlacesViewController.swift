@@ -8,6 +8,8 @@
 import UIKit
 import SDWebImage
 import CoreLocation
+import Speech
+import AVKit
 
 class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -21,7 +23,14 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     var weather: [Weather] = []
     var categories: String = ""
     
-    var mainSearchBar = SearchBar() 
+    var mainSearchBar = SearchBar()
+    
+    // Only English is supported
+    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+    
+    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    var recognitionTask: SFSpeechRecognitionTask?
+    let audioEngine = AVAudioEngine()
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -51,6 +60,13 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         button.backgroundColor =  Constants.shared.buttonsColor
         button.setImage(UIImage(named: "search"), for: .normal)
         button.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    let micButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "mic"), for: .normal)
         return button
     }()
     
@@ -205,6 +221,11 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         mainSearchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         mainSearchBar.leftAnchor.constraint(equalTo: recentsButton.rightAnchor, constant: 5).isActive = true
         mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        
+        mainSearchBar.addSubview(micButton)
+        micButton.topAnchor.constraint(equalTo: mainSearchBar.topAnchor).isActive = true
+        micButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        micButton.rightAnchor.constraint(equalTo: mainSearchBar.rightAnchor, constant: -80).isActive = true
         
         view.addSubview(segmentedControl)
         segmentedControl.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor, constant: 8).isActive = true
