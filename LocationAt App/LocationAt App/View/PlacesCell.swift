@@ -9,7 +9,7 @@ import UIKit
 
 class PlacesCell: UICollectionViewCell {
     
-    // MARK: - properties
+    // MARK: - Properties
     
     let placeImage: UIImageView = {
         let iv = UIImageView()
@@ -58,12 +58,13 @@ class PlacesCell: UICollectionViewCell {
         }
     }
     
+    // Function to call the cell properties at once
     func configure(name: String, isClosed: Bool) {
         self.nameLabel.text = name
         self.isClosed = isClosed
     }
     
-    // MARK: - layout
+    // MARK: - Layout
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -81,7 +82,7 @@ class PlacesCell: UICollectionViewCell {
         placeImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
         
         contentView.addSubview(nameLabel)
-        nameLabel.widthAnchor.constraint(equalToConstant: 190).isActive = true
+        nameLabel.widthAnchor.constraint(equalToConstant: 185).isActive = true
         nameLabel.topAnchor.constraint(equalTo: placeImage.bottomAnchor, constant: 8).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         

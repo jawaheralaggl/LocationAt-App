@@ -8,14 +8,10 @@
 import UIKit
 import SDWebImage
 import QuartzCore
-import RealmSwift
 
 class DetailsViewController: UIViewController {
     
     // MARK: - Properties
-    
-    // Create instance of Realm
-    let realm = try! Realm()
     
     var passedPlacesNames: String!
     var passedIsClosed: Bool!
@@ -170,6 +166,7 @@ class DetailsViewController: UIViewController {
         configureUI()
         view.backgroundColor = .white
         
+        // Set value for the properties
         nameLabel.text = passedPlacesNames
         ratingLabel.text = "★ " + passedRating
         isClosed = passedIsClosed
@@ -192,9 +189,9 @@ class DetailsViewController: UIViewController {
         recents.name = passedPlacesNames
         recents.address = passedAdress
         
-        realm.beginWrite()
-        realm.add(recents)
-        try! realm.commitWrite()
+        Constants.shared.realm.beginWrite()
+        Constants.shared.realm.add(recents)
+        try! Constants.shared.realm.commitWrite()
     }
     
     func passData(for placeName: String, isClosed: Bool ,placeImage: URL, weatherImages: URL, weatherTemp: String, weatherText: String, address: String, rating: String, distance: String) {
@@ -234,7 +231,7 @@ class DetailsViewController: UIViewController {
         PlacesViewController.shared.getPlaceCoordinate(address: address) { coordinate, error in
             guard let coordinate = coordinate, error == nil else { return }
             
-            // Check if user has the app in his device
+            // Check if the user has the app in his device
             if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
                 if let url = URL(string: "comgooglemaps-x-callback://?saddr=\(userLocation.lat),\(userLocation.long)&daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving") {
                     UIApplication.shared.open(url, options: [:])

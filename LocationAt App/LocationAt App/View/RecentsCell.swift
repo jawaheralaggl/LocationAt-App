@@ -9,6 +9,8 @@ import UIKit
 
 class RecentsCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     lazy var mainView: UIView = {
         let view = UIView(frame: CGRect(x: 10, y: 6, width: self.frame.width + 70, height: 80))
         view.backgroundColor = Constants.shared.viewsColor
@@ -29,6 +31,8 @@ class RecentsCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

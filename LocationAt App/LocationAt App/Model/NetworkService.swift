@@ -36,7 +36,14 @@ class NetworkService {
         
         // Initialize session and task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error { completionHandler(nil, error) }
+            
+            // Check response’s status code
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                completionHandler(nil, error)
+                return
+            }
+            
             do{
                 // Read data as JSON
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
@@ -46,7 +53,7 @@ class NetworkService {
                 
                 // Businesses(Places)
                 guard let businesses = response.value(forKey: "businesses") as? [NSDictionary] else { return }
-                                
+                
                 // Accessing each business(places)
                 for business in businesses {
                     var place = Places()
@@ -74,6 +81,7 @@ class NetworkService {
     
     // MARK: - Fetch data from WeatherAPI.
     
+    // Set function to fetch data from Weather API.
     func fetchWeather(latitude: Double, longitude: Double, completionHandler: @escaping ([Weather]?, Error?) -> Void) {
         // Set array of weather
         var weatherList: [Weather] = []
@@ -93,7 +101,14 @@ class NetworkService {
         
         // Initialize session and task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error { completionHandler(nil, error) }
+            
+            // Check response’s status code
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                completionHandler(nil, error)
+                return
+            }
+            
             do {
                 // Read data as JSON
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])

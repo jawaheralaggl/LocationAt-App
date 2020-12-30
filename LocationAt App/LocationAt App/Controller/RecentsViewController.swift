@@ -6,14 +6,10 @@
 //
 
 import UIKit
-import RealmSwift
 
 class RecentsViewController: UIViewController {
     
     // MARK: - Properties
-    
-    // Create instance of Realm
-    let realm = try! Realm()
     
     var savedNames: [String]? = []
     var savedAddress: [String] = []
@@ -54,6 +50,7 @@ class RecentsViewController: UIViewController {
         
         headerView.addSubview(titleLabel)
         headerView.addSubview(clearButton)
+        
         tableView.tableHeaderView = headerView
         tableView.allowsSelection = false
     }
@@ -62,7 +59,7 @@ class RecentsViewController: UIViewController {
     
     // Render recents data from Realm
     func renderRecents() {
-        let recents = realm.objects(Recents.self)
+        let recents = Constants.shared.realm.objects(Recents.self)
         for r in recents {
             let name = r.name
             let address = r.address
@@ -87,9 +84,9 @@ class RecentsViewController: UIViewController {
     
     @objc func clearButtonPressed() {
         // Delete recents data from Realm
-        realm.beginWrite()
-        realm.delete(realm.objects(Recents.self))
-        try! realm.commitWrite()
+        Constants.shared.realm.beginWrite()
+        Constants.shared.realm.delete(Constants.shared.realm.objects(Recents.self))
+        try! Constants.shared.realm.commitWrite()
         DispatchQueue.main.async {
             // Set savedNames array to nil to clear the rows
             self.savedNames = nil

@@ -51,7 +51,7 @@ extension PlacesViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelIcon() {
-        mainSearchBar.setValue(" ", forKey: "cancelButtonText")
+        mainSearchBar.setValue("", forKey: "cancelButtonText") // Make it empty
         mainSearchBar.showsCancelButton = true
         let cancelButton = self.mainSearchBar.value(forKey: "cancelButton") as? UIButton
         cancelButton?.tintColor = UIColor(white: 0, alpha: 0.1)

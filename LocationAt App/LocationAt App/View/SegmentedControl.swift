@@ -21,7 +21,7 @@ class SegmentedControl: UIControl {
     }
     
     var selectedIndex: Int = 0 {
-        didSet { displayNewSelectedIndex() }
+        didSet { displayNewSelectedIndex() } // called immediately after the new value is stored
     }
     
     // MARK: - Inits
@@ -52,7 +52,9 @@ class SegmentedControl: UIControl {
             label.removeFromSuperview()
         }
         
+        // Keep the capacity of the array after removing its elements
         labels.removeAll(keepingCapacity: true)
+        // Loop over the labels
         for index in 1...items.count {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,6 +75,7 @@ class SegmentedControl: UIControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        // Set properties when select label & thumbView
         if labels.count > 0 {
             let label = labels[selectedIndex]
             label.textColor = .white
