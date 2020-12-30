@@ -66,5 +66,7 @@
 	<string>Enable LocationAt-App Location to get nearby results</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Enable LocationAt-App Location to get nearby results</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>LocationAt App needs recognize speech</string>
 </dict>
 </plist>

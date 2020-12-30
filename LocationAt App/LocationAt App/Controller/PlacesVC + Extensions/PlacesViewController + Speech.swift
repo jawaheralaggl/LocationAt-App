@@ -16,7 +16,7 @@ extension PlacesViewController: SFSpeechRecognizerDelegate {
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         if available {
             self.micButton.isEnabled = true
-        } else {
+        }else{
             self.micButton.isEnabled = false
         }
     }
@@ -29,7 +29,7 @@ extension PlacesViewController: SFSpeechRecognizerDelegate {
         SFSpeechRecognizer.requestAuthorization { (authStatus) in
             
             var isButtonEnabled = false
-            
+            // Switch between authorization status
             switch authStatus {
             case .authorized:
                 isButtonEnabled = true
@@ -48,8 +48,8 @@ extension PlacesViewController: SFSpeechRecognizerDelegate {
             @unknown default:
                 fatalError()
             }
-            
-            OperationQueue.main.addOperation() {
+            // Dispatch to the main thread to update UI
+            DispatchQueue.main.async {
                 self.micButton.isEnabled = isButtonEnabled
             }
         }
@@ -64,15 +64,14 @@ extension PlacesViewController: SFSpeechRecognizerDelegate {
         
         // Create instance of audio session to record voice
         let audioSession = AVAudioSession.sharedInstance()
-        do {
+        do{
             try audioSession.setCategory(AVAudioSession.Category.record, mode: AVAudioSession.Mode.measurement, options: AVAudioSession.CategoryOptions.defaultToSpeaker)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
+        }catch{
             print("Error found")
         }
         
         self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
         let inputNode = audioEngine.inputNode
         
         guard let recognitionRequest = recognitionRequest else {

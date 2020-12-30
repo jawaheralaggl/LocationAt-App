@@ -195,7 +195,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
             self.recognitionRequest?.endAudio()
             self.micButton.isEnabled = false
             self.micButton.tintColor = .systemBlue
-        } else {
+        }else{
             self.startRecording()
             self.micButton.tintColor = .red
         }
