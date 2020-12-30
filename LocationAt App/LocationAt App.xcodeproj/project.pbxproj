@@ -36,6 +36,7 @@
 		A597BF7F2597A4EF00BF6643 /* Recents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597BF7E2597A4EF00BF6643 /* Recents.swift */; };
 		A5B23CF42593DFCB003F026F /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B23CF32593DFCB003F026F /* SegmentedControl.swift */; };
 		A5B9AD88259A125800496F60 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B9AD87259A125800496F60 /* TestConstants.swift */; };
+		A5C80506259CD0E300614506 /* PlacesViewController + Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C80505259CD0E300614506 /* PlacesViewController + Speech.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		A597BF7E2597A4EF00BF6643 /* Recents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recents.swift; sourceTree = "<group>"; };
 		A5B23CF32593DFCB003F026F /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		A5B9AD87259A125800496F60 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
+		A5C80505259CD0E300614506 /* PlacesViewController + Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlacesViewController + Speech.swift"; sourceTree = "<group>"; };
 		D36278B838068310A650C83D /* Pods-LocationAt App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationAt App.debug.xcconfig"; path = "Target Support Files/Pods-LocationAt App/Pods-LocationAt App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +237,7 @@
 				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
 				A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */,
 				A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */,
+				A5C80505259CD0E300614506 /* PlacesViewController + Speech.swift */,
 			);
 			path = "PlacesVC + Extensions";
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				A57FB97A2592201C005817FE /* Constants.swift in Sources */,
 				A55355CD258D2A240071CE72 /* SearchBar.swift in Sources */,
 				A51BDEC0259133BB003099A8 /* DetailsViewController.swift in Sources */,
+				A5C80506259CD0E300614506 /* PlacesViewController + Speech.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

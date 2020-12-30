@@ -8,6 +8,8 @@
 import UIKit
 import SDWebImage
 import CoreLocation
+import Speech
+import AVKit
 
 class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -21,7 +23,14 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     var weather: [Weather] = []
     var categories: String = ""
     
-    var mainSearchBar = SearchBar() 
+    var mainSearchBar = SearchBar()
+    
+    // Only English is supported
+    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+    
+    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    var recognitionTask: SFSpeechRecognitionTask?
+    let audioEngine = AVAudioEngine()
     
     private let headerLabel: UILabel = {
         let label = UILabel()
@@ -54,6 +63,14 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         return button
     }()
     
+    let micButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "mic"), for: .normal)
+        button.addTarget(self, action: #selector(micButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     let segmentedControl: SegmentedControl = {
         let segmentedCtrl = SegmentedControl()
         segmentedCtrl.translatesAutoresizingMaskIntoConstraints = false
@@ -77,6 +94,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = .white
         configureUI()
         cunfigureSegmentedCtrl()
+        setupSpeech()
         
         // Dismiss Keyboard when touch the view
         let tap = UITapGestureRecognizer(target: self.view ,action: #selector(UIView.endEditing))
@@ -171,6 +189,17 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         placesCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
     }
     
+    @objc func micButtonPressed() {
+        if audioEngine.isRunning {
+            self.audioEngine.stop()
+            self.recognitionRequest?.endAudio()
+            self.micButton.isEnabled = false
+            self.micButton.tintColor = .systemBlue
+        }else{
+            self.startRecording()
+            self.micButton.tintColor = .red
+        }
+    }
     
     // MARK: - Layout
     
@@ -205,6 +234,11 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         mainSearchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         mainSearchBar.leftAnchor.constraint(equalTo: recentsButton.rightAnchor, constant: 5).isActive = true
         mainSearchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        
+        mainSearchBar.addSubview(micButton)
+        micButton.topAnchor.constraint(equalTo: mainSearchBar.topAnchor).isActive = true
+        micButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        micButton.rightAnchor.constraint(equalTo: mainSearchBar.rightAnchor, constant: -70).isActive = true
         
         view.addSubview(segmentedControl)
         segmentedControl.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor, constant: 8).isActive = true
