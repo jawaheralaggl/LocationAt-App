@@ -94,6 +94,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = .white
         configureUI()
         cunfigureSegmentedCtrl()
+        setupSpeech()
         
         // Dismiss Keyboard when touch the view
         let tap = UITapGestureRecognizer(target: self.view ,action: #selector(UIView.endEditing))
