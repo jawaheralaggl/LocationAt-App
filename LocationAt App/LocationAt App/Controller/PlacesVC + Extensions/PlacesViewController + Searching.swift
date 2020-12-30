@@ -34,7 +34,7 @@ extension PlacesViewController: UISearchBarDelegate {
             self.searchBarCancelIcon()
         }, completion: { finished in
             self.mainSearchBar.becomeFirstResponder()
-            self.mainSearchBar.placeholder = "Wall Street. New York City"
+            self.mainSearchBar.placeholder = "Wall Street. New York.."
         })
     }
     

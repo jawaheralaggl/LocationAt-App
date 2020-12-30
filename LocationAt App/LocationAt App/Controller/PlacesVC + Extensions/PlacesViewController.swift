@@ -67,6 +67,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "mic"), for: .normal)
+        button.addTarget(self, action: #selector(micButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -187,6 +188,17 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         placesCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
     }
     
+    @objc func micButtonPressed() {
+        if audioEngine.isRunning {
+            self.audioEngine.stop()
+            self.recognitionRequest?.endAudio()
+            self.micButton.isEnabled = false
+            self.micButton.tintColor = .systemBlue
+        } else {
+            self.startRecording()
+            self.micButton.tintColor = .red
+        }
+    }
     
     // MARK: - Layout
     
@@ -225,7 +237,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         mainSearchBar.addSubview(micButton)
         micButton.topAnchor.constraint(equalTo: mainSearchBar.topAnchor).isActive = true
         micButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        micButton.rightAnchor.constraint(equalTo: mainSearchBar.rightAnchor, constant: -80).isActive = true
+        micButton.rightAnchor.constraint(equalTo: mainSearchBar.rightAnchor, constant: -70).isActive = true
         
         view.addSubview(segmentedControl)
         segmentedControl.topAnchor.constraint(equalTo: mainSearchBar.bottomAnchor, constant: 8).isActive = true
