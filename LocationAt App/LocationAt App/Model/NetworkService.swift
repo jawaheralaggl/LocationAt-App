@@ -37,6 +37,7 @@ class NetworkService {
         // Initialize session and task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
+            // Check response’s status code
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
                 completionHandler(nil, error)
@@ -80,6 +81,7 @@ class NetworkService {
     
     // MARK: - Fetch data from WeatherAPI.
     
+    // Set function to fetch data from Weather API.
     func fetchWeather(latitude: Double, longitude: Double, completionHandler: @escaping ([Weather]?, Error?) -> Void) {
         // Set array of weather
         var weatherList: [Weather] = []
@@ -100,6 +102,7 @@ class NetworkService {
         // Initialize session and task
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
+            // Check response’s status code
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
                 completionHandler(nil, error)

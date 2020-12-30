@@ -14,10 +14,10 @@ class TestNetworkService: XCTestCase {
     let placesService = PlacesViewController()
     
     func testFetchPlaces() {
-        // 1. Define an expectation
+        // Define an expectation
         let expectation = self.expectation(description: "Fetch places successfully")
         
-        // 2. The asynchronous code
+        // The asynchronous code
         let userLocation = placesService.getUserLocation(locationManager: placesService.locationManager)
         
         networkService.fetchPlaces(latitude: userLocation.lat, longitude: userLocation.long, category: TestConstants.categories, limit: TestConstants.limit, sortBy: TestConstants.sortBy) { result, error in
@@ -32,7 +32,7 @@ class TestNetworkService: XCTestCase {
             expectation.fulfill()
         }
         
-        // 3. Wait for the expectation to be fulfilled
+        // Wait for the expectation to be fulfilled
         self.waitForExpectations(timeout: 5) { error in
             if let error = error {
                 XCTFail("Found errored: \(error)")
@@ -41,10 +41,10 @@ class TestNetworkService: XCTestCase {
     }
     
     func testFetchWeather() {
-        // 1. Define an expectation
+        // Define an expectation
         let expectation = self.expectation(description: "Fetch weather successfully")
         
-        // 2. The asynchronous code
+        // The asynchronous code
         let userLocation = placesService.getUserLocation(locationManager: placesService.locationManager)
         
         networkService.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long, completionHandler: { result, error in
@@ -59,7 +59,7 @@ class TestNetworkService: XCTestCase {
             expectation.fulfill()
         })
         
-        // 3. Wait for the expectation to be fulfilled
+        // Wait for the expectation to be fulfilled
         self.waitForExpectations(timeout: 5) { error in
             if let error = error {
                 XCTFail("Found errored: \(error)")

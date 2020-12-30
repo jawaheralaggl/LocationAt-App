@@ -106,6 +106,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
                 NetworkService.shared.fetchWeather(latitude: lat, longitude: long) { (response, error) in
                     if let response = response {
                         self.weather = response
+                        // Dispatch to the main thread to update UI
                         DispatchQueue.main.async {
                             self.placesCollectionView.reloadData()
                         }
@@ -128,6 +129,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
                 NetworkService.shared.fetchWeather(latitude: userLocation.lat, longitude: userLocation.long) { (response, error) in
                     if let response = response {
                         self.weather = response
+                        // Dispatch to the main thread to update UI
                         DispatchQueue.main.async {
                             self.placesCollectionView.reloadData()
                         }
@@ -150,6 +152,7 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @objc func segmentValueChanged(){
+        // Switch between categories
         switch segmentedControl.selectedIndex {
         case 0:
             categories = "restaurants"
@@ -162,7 +165,10 @@ class PlacesViewController: UIViewController, CLLocationManagerDelegate {
         default:
             break
         }
+        // Then fetch the data
         fetchPlacesAndWeatherAroundUser()
+        // Scroll back to the first index after the search
+        placesCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
     }
     
     

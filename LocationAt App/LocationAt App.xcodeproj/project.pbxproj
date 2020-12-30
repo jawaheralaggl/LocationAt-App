@@ -161,7 +161,6 @@
 				A597BF812598F5F000BF6643 /* Utils */,
 				A55355C3258D1E260071CE72 /* Storyboard */,
 				A553558D258CD4C60071CE72 /* Info.plist */,
-				A5535588258CD4C60071CE72 /* Assets.xcassets */,
 			);
 			path = "LocationAt App";
 			sourceTree = "<group>";
@@ -170,10 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				A544D52E259923C6008CDBF4 /* SplashScreen */,
-				A5535583258CD4C50071CE72 /* PlacesViewController.swift */,
-				A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */,
-				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
-				A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */,
+				A5C804F0259B86E100614506 /* PlacesVC + Extensions */,
 				A51BDEBF259133BB003099A8 /* DetailsViewController.swift */,
 				A597BF75259674F800BF6643 /* RecentsViewController.swift */,
 			);
@@ -227,8 +223,20 @@
 			children = (
 				A57FB9792592201C005817FE /* Constants.swift */,
 				A544D5302599244F008CDBF4 /* splash.json */,
+				A5535588258CD4C60071CE72 /* Assets.xcassets */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A5C804F0259B86E100614506 /* PlacesVC + Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5535583258CD4C50071CE72 /* PlacesViewController.swift */,
+				A51BDE95258FAE84003099A8 /* PlacesViewController + GetLocation.swift */,
+				A51BDE9E258FB27D003099A8 /* PlacesViewController + CollectionViews.swift */,
+				A51BDE9B258FB220003099A8 /* PlacesViewController + Searching.swift */,
+			);
+			path = "PlacesVC + Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -10,7 +10,11 @@ import Lottie
 
 class SplashViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var animationView: AnimationView?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,7 @@ class SplashViewController: UIViewController {
         animationView?.play()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            // Enter app first VC..
+            // Enter first VC of the app..
             let vc = PlacesViewController()
             vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .fullScreen

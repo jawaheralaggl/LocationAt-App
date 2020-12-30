@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Constants {
     static let shared = Constants()
+    
+    // Create instance of Realm
+    let realm = try! Realm()
     
     let yelpApiKey = "UUKIQnweDQKTPWj0Ud4q87f3eEg33Nm3gAWWFy9LDefkq2Q5VjQLgL5BYtmIZBgHJiAy0ZEmjDj_bRlh4ZD7NoxdFAKgUA8mRwCL7jMy6JNWgCXLYdXnI8bJrAHdX3Yx"
     
